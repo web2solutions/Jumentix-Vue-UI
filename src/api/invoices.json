@@ -1,0 +1,102 @@
+{
+    "message": "Successful operation",
+    "status": 200,
+    "data": [
+		{
+            "InvoiceID": 1,
+            "InvoiceNumber": "INV-1951",
+            "InvoiceReference": "",
+            "InvoiceDate": "06 Aug 2018",
+            "InvoiceTotal": "$0.00",
+            "InvoiceStatus": "Paid"
+          },
+          {
+            "InvoiceID": 2,
+            "InvoiceNumber": "INV-1954",
+            "InvoiceReference": "",
+            "InvoiceDate": "10 Aug 2018",
+            "InvoiceTotal": "$1.00",
+            "InvoiceStatus": "Paid"
+          },
+          {
+            "InvoiceID": 3,
+            "InvoiceNumber": "INV-1956",
+            "InvoiceReference": "",
+            "InvoiceDate": "17 Aug 2018",
+            "InvoiceTotal": "$0.10",
+            "InvoiceStatus": "Due in 5 days"
+          },
+          {
+            "InvoiceID": 4,
+            "InvoiceNumber": "INV-1961",
+            "InvoiceReference": "",
+            "InvoiceDate": "06 Aug 2018",
+            "InvoiceTotal": "$0.00",
+            "InvoiceStatus": "Paid"
+          },
+          {
+            "InvoiceID": 5,
+            "InvoiceNumber": "INV-1964",
+            "InvoiceReference": "",
+            "InvoiceDate": "10 Aug 2018",
+            "InvoiceTotal": "$1.00",
+            "InvoiceStatus": "Paid"
+          },
+          {
+            "InvoiceID": 6,
+            "InvoiceNumber": "INV-1966",
+            "InvoiceReference": "",
+            "InvoiceDate": "17 Aug 2018",
+            "InvoiceTotal": "$0.10",
+            "InvoiceStatus": "Due in 5 days"
+          },
+          {
+            "InvoiceID": 7,
+            "InvoiceNumber": "INV-1971",
+            "InvoiceReference": "",
+            "InvoiceDate": "06 Aug 2018",
+            "InvoiceTotal": "$0.00",
+            "InvoiceStatus": "Paid"
+          },
+          {
+            "InvoiceID": 8,
+            "InvoiceNumber": "INV-1974",
+            "InvoiceReference": "",
+            "InvoiceDate": "10 Aug 2018",
+            "InvoiceTotal": "$1.00",
+            "InvoiceStatus": "Paid"
+          },
+          {
+            "InvoiceID": 9,
+            "InvoiceNumber": "INV-1976",
+            "InvoiceReference": "",
+            "InvoiceDate": "17 Aug 2018",
+            "InvoiceTotal": "$0.10",
+            "InvoiceStatus": "Due in 5 days"
+          },
+          {
+            "InvoiceID": 10,
+            "InvoiceNumber": "INV-1981",
+            "InvoiceReference": "",
+            "InvoiceDate": "06 Aug 2018",
+            "InvoiceTotal": "$0.00",
+            "InvoiceStatus": "Paid"
+          },
+          {
+            "InvoiceID": 12,
+            "InvoiceNumber": "INV-1984",
+            "InvoiceReference": "",
+            "InvoiceDate": "10 Aug 2018",
+            "InvoiceTotal": "$1.00",
+            "InvoiceStatus": "Paid"
+          },
+          {
+            "InvoiceID": 13,
+            "InvoiceNumber": "INV-1996",
+            "InvoiceReference": "",
+            "InvoiceDate": "17 Aug 2018",
+            "InvoiceTotal": "$0.10",
+            "InvoiceStatus": "Due in 5 days"
+          }
+	]
+}

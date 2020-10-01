@@ -1,0 +1,29 @@
+{
+    "test": {
+        "user": "apiuser",
+        "pass": "MoreThanAFeeling",
+        "host": "192.168.1.48",
+        "server_dir": "/home/apiuser/Jumentix-Vue-UI",
+        "default": {
+            "commit_message": "automated commit - WEB2 Deploy System"
+        }
+    },
+    "test-mac": {
+        "user": "apiuser",
+        "pass": "MoreThanAFeeling",
+        "host": "10.1.1.62",
+        "server_dir": "/home/apiuser/Jumentix-Vue-UI",
+        "default": {
+            "commit_message": "automated commit - WEB2 Deploy System"
+        }
+    },
+    "production": {
+        "user": "apiuser",
+        "pass": "MoreThanAFeeling",
+        "host": "192.168.1.64",
+        "server_dir": "/home/apiuser/Jumentix-Vue-UI",
+        "default": {
+            "commit_message": "automated commit - WEB2 Deploy System"
+        }
+    }
+}
