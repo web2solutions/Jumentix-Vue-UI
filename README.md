@@ -58,6 +58,16 @@ npm test
 ## How to see JumentiX and JumentiX Vue UI in action
 
 1. Install [JumentiX](https://github.com/web2solutions/Jumentix#pre-requisites)
+
+```bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:3001
+npm start
+``` 
+
+
 2. Install [JumentiX Vue UI](https://github.com/web2solutions/Jumentix-Vue-UI#project-structure)
 
 ```bash
