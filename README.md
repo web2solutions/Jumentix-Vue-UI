@@ -1,6 +1,59 @@
-# Jumentix-Vue-UI
+# JumentiX Vue UI
 
 > User Interface for JumentiX
+
+"Runtime" generated User Interfaces by using extended Swagger Open Data specification as declarative metadata.
+
+## The scenario
+
+**To create backend and it frontend for "Enterprise web applications".**
+
+On the backend it is common to use a declarative standard to "generate" code and documentation for REST APIs.
+
+A well known declarative standard is the [OpenAPI](https://swagger.io/specification/) specification, used on [Swagger](https://swagger.io/).
+
+Swagger is a set of tools for API development, documentation, testing and more.
+
+>> The OpenAPI Specification, formerly known as the Swagger Specification, is the world’s standard for defining RESTful interfaces. The OAS enables developers to design a technology-agnostic API interface that forms the basis of their API development and consumption.
+
+
+## The problems
+
+Rather than the back end, where you have a set of tools to automate code and documentation development, the Frontend development still being a intensive manual and long task, due several reasons:
+
+- Data "payloads"
+
+Frontend developers need to pay attention to API documentations and all it deeply details to make sure the "application client" is "composing valid payloads" when sending data to API´s end points.
+
+End point payload may contains vary properties and different data types.
+
+Frontend developers should to validate payloads before sending data to end points. Payloads might be complex and slow to get it validate once the front end developers need to go through every end point documentation and clear understand it resources and data types. This requires manual and thorough work.
+
+
+- Data "format"
+
+Frontend developers are required to know how backend data looks like to correctly/friendly display it on screens. This requires manual and thorough work.
+
+
+
+- Frontend development tends to be longer and harder than Backend development. You probably may need more developers on Frontend rather than the Backend
+
+
+
+- "SCRUM based" application development
+
+
+
+
+
+
+using standards and [RAD](https://en.wikipedia.org/wiki/Rapid_application_development) methodologies
+
+[RAD](https://en.wikipedia.org/wiki/Rapid_application_development)
+
+
+
+
 
 ### Project Structure
 ```bash
