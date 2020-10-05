@@ -2,7 +2,7 @@
 
 > User Interface for JumentiX
 
-"Runtime" generated VUE User Interfaces by leveraging extended Swagger Open Data specification as declarative metadata.
+"Runtime" generated VUE User Interfaces by leveraging extended Swagger OpenAPI specification as declarative metadata.
 
 ## The scenario
 
