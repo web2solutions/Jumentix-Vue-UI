@@ -1,4 +1,4 @@
-# JumentiX Vue UI
+#   <img src="https://avatars3.githubusercontent.com/u/14809007?s=280&v=4" width="50" />  JumentiX Vue UI
 
 > User Interface for JumentiX
 
