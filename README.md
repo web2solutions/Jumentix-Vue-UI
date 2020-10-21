@@ -709,6 +709,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ### Reference
 
+* [JQWidget](https://www.jqwidgets.com/)
 * [Vuetifyjs](https://vuetifyjs.com/)
 * [Vue](https://vuejs.org/index.html/)
 * [Material Design](http://material.io/)
