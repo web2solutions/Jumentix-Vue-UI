@@ -60,6 +60,8 @@ Swagger is a set of tools for API development, documentation, testing and more.
 
 
 ### Project Structure
+
+
 ```bash
 ├── build
 ├── config (Webpack)
@@ -88,6 +90,11 @@ Swagger is a set of tools for API development, documentation, testing and more.
 │   │   │   ├── formEdit -> Form screen to edit exiting item
 │   │   │   ├── formSchema -> Form screen to create/edit items in a multiple dimensional field
 │   │   │   └── listing -> Main CRUD screen. Grid, Toolbar
+│   │   │   │    ├── RowViewer.js
+│   │   │   │    ├── SchemaViewer.js
+│   │   │   │    ├── View.vue
+│   │   │   │    ├── ViewModel.vm.js
+│   │   │   │    └── toolbarButtons.js
 │   ├── router
 │   ├── util
 │   ├── App.vue
