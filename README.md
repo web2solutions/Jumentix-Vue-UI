@@ -176,6 +176,18 @@ It is going to ask you to change your password.
 
 <img src="https://i.imgur.com/MsB0GIg.png" width="300" /> 
 
+<img src="https://i.imgur.com/wCIh3yN.png" width="300" /> 
+
+<img src="https://i.imgur.com/nnc2rAe.png" width="300" /> 
+
+<img src="https://i.imgur.com/NP1LYTv.png" width="300" /> 
+
+<img src="https://i.imgur.com/qindR5B.png" width="300" /> 
+
+<img src="https://i.imgur.com/oOAdU9n.png" width="300" /> 
+
+<img src="https://i.imgur.com/WPMKRP2.png" width="300" /> 
+
 
 
 ## Code Examples
