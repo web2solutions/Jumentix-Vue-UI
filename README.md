@@ -82,19 +82,50 @@ Swagger is a set of tools for API development, documentation, testing and more.
 │   │   ├── MAPForms -> Visual Form Builder (JQWidget)
 │   │   ├── Human -> swagger based automatically generated CRUD (JQWidget)
 │   │   │   ├── formCreate -> Form screen to create new item
+│   │   │   │    ├── events -> functions supporting Screen events
+│   │   │   │    ├── Index.vue -> Vue View
+│   │   │   │    ├── Index.vm.js -> Vue ViewModel
+│   │   │   │    └── toolbarButtons.js -> toolbar configuration
 │   │   │   ├── formEdit -> Form screen to edit exiting item
-│   │   │   ├── formSchema -> Form screen to create/edit items in a multiple dimensional field
+│   │   │   │    ├── events -> functions supporting Screen events
+│   │   │   │    ├── Index.vue -> Vue View
+│   │   │   │    ├── Index.vm.js -> Vue ViewModel
+│   │   │   │    └── toolbarButtons.js -> toolbar configuration
+│   │   │   ├── formSchema -> Form screen to create/edit items in a "multiple records" field
+│   │   │   │    ├── events -> functions supporting Screen events
+│   │   │   │    ├── Index.vue -> Vue View
+│   │   │   │    ├── Index.vm.js -> Vue ViewModel
+│   │   │   │    └── toolbarButtons.js -> toolbar configuration
 │   │   │   └── listing -> Main CRUD screen. Grid, Toolbar
+│   │   │   │    ├── events -> functions supporting Screen events
+│   │   │   │    ├── RowViewer.js -> Display document data under a grid row
+│   │   │   │    ├── SchemaViewer.js -> Display document "multiple records" fields data 
+│   │   │   │    ├── View.vue -> Vue View
+│   │   │   │    ├── ViewModel.vm.js -> Vue ViewModel
+│   │   │   │    └── toolbarButtons.js -> toolbar configuration
 │   │   └── User -> swagger based automatically generated CRUD (JQWidget)
 │   │   │   ├── formCreate -> Form screen to create new item
+│   │   │   │    ├── events -> functions supporting Screen events
+│   │   │   │    ├── Index.vue -> Vue View
+│   │   │   │    ├── Index.vm.js -> Vue ViewModel
+│   │   │   │    └── toolbarButtons.js -> toolbar configuration
 │   │   │   ├── formEdit -> Form screen to edit exiting item
-│   │   │   ├── formSchema -> Form screen to create/edit items in a multiple dimensional field
+│   │   │   │    ├── events -> functions supporting Screen events
+│   │   │   │    ├── Index.vue -> Vue View
+│   │   │   │    ├── Index.vm.js -> Vue ViewModel
+│   │   │   │    └── toolbarButtons.js -> toolbar configuration
+│   │   │   ├── formSchema -> Form screen to create/edit items in a "multiple records" field
+│   │   │   │    ├── events -> functions supporting Screen events
+│   │   │   │    ├── Index.vue -> Vue View
+│   │   │   │    ├── Index.vm.js -> Vue ViewModel
+│   │   │   │    └── toolbarButtons.js -> toolbar configuration
 │   │   │   └── listing -> Main CRUD screen. Grid, Toolbar
-│   │   │   │    ├── RowViewer.js
-│   │   │   │    ├── SchemaViewer.js
-│   │   │   │    ├── View.vue
-│   │   │   │    ├── ViewModel.vm.js
-│   │   │   │    └── toolbarButtons.js
+│   │   │   │    ├── events -> functions supporting Screen events
+│   │   │   │    ├── RowViewer.js -> Display document data under a grid row
+│   │   │   │    ├── SchemaViewer.js -> Display document "multiple records" fields data 
+│   │   │   │    ├── View.vue -> Vue View
+│   │   │   │    ├── ViewModel.vm.js -> Vue ViewModel
+│   │   │   │    └── toolbarButtons.js -> toolbar configuration
 │   ├── router
 │   ├── util
 │   ├── App.vue
