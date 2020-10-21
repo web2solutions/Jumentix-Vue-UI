@@ -253,6 +253,35 @@ It is going to ask you to change your password.
 
 [https://github.com/web2solutions/Jumentix-Vue-UI/tree/master/src/pages/Human](https://github.com/web2solutions/Jumentix-Vue-UI/tree/master/src/pages/Human)
 
+
+```bash
+├── src
+│   ├── pages
+│   │   └── User -> swagger based automatically generated CRUD (JQWidget)
+│   │   │   ├── formCreate -> Form screen to create new item
+│   │   │   │    ├── events -> functions supporting Screen events
+│   │   │   │    ├── Index.vue -> Vue View
+│   │   │   │    ├── Index.vm.js -> Vue ViewModel
+│   │   │   │    └── toolbarButtons.js -> toolbar configuration
+│   │   │   ├── formEdit -> Form screen to edit exiting item
+│   │   │   │    ├── events -> functions supporting Screen events
+│   │   │   │    ├── Index.vue -> Vue View
+│   │   │   │    ├── Index.vm.js -> Vue ViewModel
+│   │   │   │    └── toolbarButtons.js -> toolbar configuration
+│   │   │   ├── formSchema -> Form screen to create/edit items in a "multiple records" field
+│   │   │   │    ├── events -> functions supporting Screen events
+│   │   │   │    ├── Index.vue -> Vue View
+│   │   │   │    ├── Index.vm.js -> Vue ViewModel
+│   │   │   │    └── toolbarButtons.js -> toolbar configuration
+│   │   │   └── listing -> Main CRUD screen. Grid, Toolbar
+│   │   │   │    ├── events -> functions supporting Screen events
+│   │   │   │    ├── RowViewer.js -> Display document data under a grid row
+│   │   │   │    ├── SchemaViewer.js -> Display document "multiple records" fields data 
+│   │   │   │    ├── View.vue -> Vue View
+│   │   │   │    ├── ViewModel.vm.js -> Vue ViewModel
+│   │   │   │    └── toolbarButtons.js -> toolbar configuration
+```
+
 ## Vuetify CRUD screens
 
 <img src="https://i.imgur.com/MsB0GIg.png" width="300" /> 
