@@ -257,7 +257,7 @@ It is going to ask you to change your password.
 ```bash
 ├── src
 │   ├── pages
-│   │   └── User -> swagger based automatically generated CRUD (JQWidget)
+│   │   └── User
 │   │   │   ├── formCreate -> Form screen to create new item
 │   │   │   │    ├── events -> functions supporting Screen events
 │   │   │   │    ├── Index.vue -> Vue View
