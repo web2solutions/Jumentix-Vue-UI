@@ -365,13 +365,43 @@ code {
           : 'default'
     });
   </script>
-<h1 id="jumentix-vue-ui">JumentiX Vue UI</h1>
+<h1 id="img-src%22httpsavatars3githubusercontentcomu14809007s280v4%22-width%2250%22--jumentix-vue-ui"><img src="https://avatars3.githubusercontent.com/u/14809007?s=280&v=4" width="50" />  JumentiX Vue UI</h1>
 <blockquote>
 <p>User Interface for JumentiX</p>
 </blockquote>
-<p>&quot;Runtime&quot; generated User Interfaces by using extended Swagger Open Data specification as declarative metadata.</p>
-<h2 id="the-scenario">The scenario</h2>
-<p><strong>To create backend and it frontend for &quot;Enterprise realtime applications&quot;.</strong></p>
+<p>&quot;Runtime&quot; generated VUE User Interfaces by leveraging extended Swagger OpenAPI specification as declarative metadata.</p>
+<h2 id="problems">Problems</h2>
+<p>Rather than the back end, where you have a set of tools to automate code and documentation development, the Frontend development still being an intensive manual and long task, due several reasons:</p>
+<ul>
+<li>Data &quot;payloads&quot;</li>
+</ul>
+<p>Frontend developers need to pay attention to API documentations and all it deeply details to make sure the &quot;application client&quot; is &quot;composing valid payloads&quot; when sending data to API´s end points.</p>
+<p>End point payload may contains vary properties and different data types.</p>
+<p>Frontend developers should to validate payloads before sending data to end points. Payloads might be complex and slow to get it validate once the front end developers need to go through every end point documentation and clear understand it resources and data types. This requires manual and thorough work.</p>
+<ul>
+<li>Data &quot;format&quot;</li>
+</ul>
+<p>Frontend developers are required to know how backend data looks like to correctly/friendly display it on screens. This requires manual and thorough work.</p>
+<ul>
+<li>
+<p>Frontend development tends to be longer and harder than Backend development. You probably may need more developers on Frontend rather than the Backend</p>
+</li>
+<li>
+<p>&quot;SCRUM based&quot; application development</p>
+</li>
+</ul>
+<p>In the cases where you have a kind of application which should be flexible in terms of frequently adding or removing features you usually need to manually change files in both client and server side. You usually need to change specification files, database models, grids and forms structure to achieve that goal.</p>
+<ul>
+<li>Components setup/configuration</li>
+</ul>
+<p>In modern JS SPAs, screens are usually component architecture based. Some known components are grids, forms, form fields, toolbars and others.</p>
+<p>Every component setup must match the backend standards in a certain level.</p>
+<p>In a single screen you might need to repeatedly to perform several component configuration, always looking to your backend specification.</p>
+<ul>
+<li>Code quality</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p><strong>Employing mainly <a href="https://en.wikipedia.org/wiki/Rapid_application_development">RAD</a> and DRY methodologies to generate frontend and backend components.</strong></p>
 <p>On the backend it is common to use a declarative standard to &quot;generate&quot; code and documentation for REST APIs.</p>
 <p>A well known declarative standard is the <a href="https://swagger.io/specification/">OpenAPI</a> specification, used on <a href="https://swagger.io/">Swagger</a>.</p>
 <p>Swagger is a set of tools for API development, documentation, testing and more.</p>
@@ -380,39 +410,42 @@ code {
 <p>The OpenAPI Specification, formerly known as the Swagger Specification, is the world’s standard for defining RESTful interfaces. The OAS enables developers to design a technology-agnostic API interface that forms the basis of their API development and consumption.</p>
 </blockquote>
 </blockquote>
-<h2 id="the-problems">The problems</h2>
-<p>using standards and <a href="https://en.wikipedia.org/wiki/Rapid_application_development">RAD</a> methodologies</p>
-<p><a href="https://en.wikipedia.org/wiki/Rapid_application_development">RAD</a></p>
 <h3 id="project-structure">Project Structure</h3>
 <pre class="hljs"><code><div>├── build
 ├── config (Webpack)
+├── deploy -&gt; application deploy configuration
+├── mock
 ├── src
 │   ├── api
 │   ├── components
-│   ├── mixins
-│   ├── pages (or views)
+│   │   ├── xCrud -&gt; swagger based automatically generated CRUD (Vuetify)
+│   │   ├── xCrud -&gt; swagger based automatically generated CRUD (Vuetify)
+│   ├── helpers
+│   │   ├── mediator -&gt; Message Mediator &amp;&amp; IndexedDB library
+│   │   ├── helper.js -&gt; helper <span class="hljs-built_in">functions</span>
+│   │   ├── session.js -&gt; client side session implementation
+│   │   └── store.js -&gt; Vuex implementation
+│   ├── pages
+│   │   ├── FinanceCategory -&gt; swagger based automatically generated CRUD (Vuetify)
+│   │   ├── MAPForms -&gt; Visual Form Builder (JQWidget)
+│   │   └── User -&gt; swagger based automatically generated CRUD (JQWidget)
 │   ├── router
 │   ├── util
-│   ├── theme
-│   │   ├── default.styl
-│   └── App.vue
-│   └── event.js
-│   └── main.js
-├── dist
-├── release
-├── static (or asset)
-├── mock (or script to build mock data)
+│   ├── App.vue
+│   ├── event.js
+│   ├── main.js
+│   └── Mediator.js -&gt; Mediator implementation
+├── static
 ├── node_modules
 ├── <span class="hljs-built_in">test</span>
 ├── README.md
 ├── package.json
+├── Jumentix-Vue-UI.js -&gt; express implementation to serve the static app
 ├── index.html
 └── .gitignore
-
-<span class="hljs-comment">### Build Setup</span>
-
-``` bash
-<span class="hljs-comment"># install dependencies</span>
+</div></code></pre>
+<h3 id="build-setup">Build Setup</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># install dependencies</span>
 npm install
 
 <span class="hljs-comment"># serve with hot reload at localhost:8080</span>
@@ -420,9 +453,6 @@ npm run dev
 
 <span class="hljs-comment"># build for production with minification</span>
 npm run build
-
-<span class="hljs-comment"># build for production and view the bundle analyzer report</span>
-npm run build --report
 
 <span class="hljs-comment"># run unit tests</span>
 npm run unit
@@ -453,45 +483,366 @@ npm install
 npm run dev
 </div></code></pre>
 <ol start="3">
-<li>Reach UI on browser: http://localhost:8080/</li>
+<li>Reach and Setup the REST API on browser:</li>
 </ol>
-<h2 id="how-to-use-the-automated-deploy-system">How to use the automated Deploy System?</h2>
-<p>Once you get the Deploy system installed into your node.js application, you may use npm to deploy your code to the specified server.</p>
-<p><em><strong>What it does?</strong></em></p>
-<ol>
-<li>commit your local master changes</li>
-<li>push your local master changes to github</li>
-<li>Connect to target server via SSH</li>
-<li>pull master changes from github into the application directory</li>
-<li>re-install application</li>
-<li>re-build application</li>
-<li>re-start application at target server</li>
+<p><a href="http://localhost:3001/application/setup">http://localhost:3001/application/setup</a></p>
+<ol start="4">
+<li>Reach UI on browser:</li>
 </ol>
-<p><em><strong>Parameters:</strong></em></p>
+<p><a href="http://localhost:8080/">http://localhost:8080/</a></p>
+<ol start="5">
+<li>Do login.</li>
+</ol>
+<p>User: agency@agency.com
+Password: 123</p>
+<p>It is going to ask you to change your password.</p>
+<ol start="6">
+<li>Swagger based CRUD screen - JQWidget implementation</li>
+</ol>
+<p><a href="http://localhost:8080/#/User">http://localhost:8080/#/User</a></p>
+<ol start="7">
+<li>Swagger based CRUD screen - Vuetify implementation</li>
+</ol>
+<p><a href="http://localhost:8080/#/surveys">http://localhost:8080/#/surveys</a></p>
+<h2 id="vuetify-crud-screens">Vuetify CRUD screens</h2>
+<img src="https://i.imgur.com/MsB0GIg.png" width="300" /> 
+<img src="https://i.imgur.com/wCIh3yN.png" width="300" /> 
+<img src="https://i.imgur.com/nnc2rAe.png" width="300" /> 
+<img src="https://i.imgur.com/NP1LYTv.png" width="300" /> 
+<img src="https://i.imgur.com/qindR5B.png" width="300" /> 
+<img src="https://i.imgur.com/oOAdU9n.png" width="300" /> 
+<img src="https://i.imgur.com/WPMKRP2.png" width="300" /> 
+<h2 id="code-examples">Code Examples</h2>
+<h3 id="text-field">Text Field</h3>
+<p>Following code generates a text field on screen</p>
+<pre class="hljs"><code><div>    <span class="hljs-attr">first_name:</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">"First Name"</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">example:</span> <span class="hljs-string">"Thomas"</span>
+        <span class="hljs-attr">minLength:</span> <span class="hljs-number">2</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">First</span> <span class="hljs-string">name</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-string">"120"</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">First</span> <span class="hljs-string">name</span>
+</div></code></pre>
+<h3 id="combobox-field-linked-to-another-collection">ComboBox field linked to another collection</h3>
+<p>Following code generates a combobox field on screen. The data inside the combo is fetched from a IndexedDB collection.</p>
+<pre class="hljs"><code><div>    <span class="hljs-attr">user:</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">"System Account associated to this Human"</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">example:</span> <span class="hljs-string">"5c78a060c15bca840749e44b"</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">collection-link:</span> <span class="hljs-string">User</span>
+          <span class="hljs-attr">collection-link-value:</span> <span class="hljs-string">_id</span>
+          <span class="hljs-attr">collection-link-label:</span> <span class="hljs-string">username</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">User</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-string">"120"</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">combobox</span> <span class="hljs-comment"># select, combobox, text,  radio, checkbox, switch, textarea, autocomplete</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">User</span>
+            <span class="hljs-attr">selection-limit:</span> <span class="hljs-number">1</span>
+</div></code></pre>
+<h3 id="select-field-linked-to-another-collection">Select field linked to another collection</h3>
+<p>Following code generates a select field on screen. The data inside the select field is fetched from a IndexedDB collection.</p>
+<pre class="hljs"><code><div>    <span class="hljs-attr">user:</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">"System Account associated to this Human"</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">example:</span> <span class="hljs-string">"5c78a060c15bca840749e44b"</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">collection-link:</span> <span class="hljs-string">User</span>
+          <span class="hljs-attr">collection-link-value:</span> <span class="hljs-string">_id</span>
+          <span class="hljs-attr">collection-link-label:</span> <span class="hljs-string">username</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">User</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-string">"120"</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">select</span> <span class="hljs-comment"># select, combobox, text,  radio, checkbox, switch, textarea, autocomplete</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">User</span>
+            <span class="hljs-attr">selection-limit:</span> <span class="hljs-number">1</span>
+</div></code></pre>
+<h3 id="select-field-listing-form-defined-options">Select field listing form defined options</h3>
+<p>Following code generates a select field on screen. The data inside the select field is &quot;hard coded&quot; into the &quot;x-ui&quot; OpenAPI extended property.</p>
+<pre class="hljs"><code><div>    <span class="hljs-attr">roles:</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"array"</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">User's</span> <span class="hljs-string">role</span>
+        <span class="hljs-attr">default:</span> <span class="hljs-string">["parent"]</span>
+        <span class="hljs-attr">items:</span>
+          <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">User's</span> <span class="hljs-string">role</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-number">120</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">select</span> <span class="hljs-comment"># select, combobox, text,  radio, checkbox, switch, textarea, autocomplete</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">User's</span> <span class="hljs-string">role</span>
+            <span class="hljs-attr">options:</span> <span class="hljs-string">["admin",</span> <span class="hljs-string">"staff"</span><span class="hljs-string">,</span> <span class="hljs-string">"parent"</span><span class="hljs-string">,</span> <span class="hljs-string">"child"</span><span class="hljs-string">,</span> <span class="hljs-string">"agency"</span><span class="hljs-string">,</span> <span class="hljs-string">"caseworker"</span><span class="hljs-string">,</span> <span class="hljs-string">"manager"</span><span class="hljs-string">]</span>
+            <span class="hljs-attr">selection-limit:</span> <span class="hljs-number">0</span>
+</div></code></pre>
+<p>Following code generates a select field on screen. The data inside the select field is &quot;hard coded&quot; into the &quot;enum&quot; OpenAPI official property.</p>
+<h3 id="select-field-listing-enum-values">Select field listing enum values</h3>
+<pre class="hljs"><code><div>    <span class="hljs-attr">role:</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">enum:</span> <span class="hljs-string">["admin",</span> <span class="hljs-string">"staff"</span><span class="hljs-string">,</span> <span class="hljs-string">"parent"</span><span class="hljs-string">,</span> <span class="hljs-string">"child"</span><span class="hljs-string">,</span> <span class="hljs-string">"agency"</span><span class="hljs-string">,</span> <span class="hljs-string">"caseworker"</span><span class="hljs-string">,</span> <span class="hljs-string">"manager"</span><span class="hljs-string">]</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">The</span> <span class="hljs-string">User's</span> <span class="hljs-string">role</span>
+        <span class="hljs-attr">default:</span> <span class="hljs-string">["parent"]</span>
+        <span class="hljs-attr">items:</span>
+          <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">User's</span> <span class="hljs-string">role</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-number">120</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">select</span> <span class="hljs-comment"># select, combobox, text,  radio, checkbox, switch, textarea, autocomplete</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">User's</span> <span class="hljs-string">role</span>
+            <span class="hljs-attr">selection-limit:</span> <span class="hljs-number">0</span>
+</div></code></pre>
+<h3 id="multi-select--listing-field-linked-to-a-collection">Multi select / listing field linked to a collection</h3>
+<p>Following code generates a multi select field on screen. The data inside the select field is fetched from a IndexedDB collection.</p>
+<pre class="hljs"><code><div>    <span class="hljs-attr">sub_roles:</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"array"</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">Sub</span> <span class="hljs-string">Roles</span> <span class="hljs-string">allowed</span> <span class="hljs-string">in</span> <span class="hljs-string">this</span> <span class="hljs-string">Program</span>
+        <span class="hljs-attr">default:</span> <span class="hljs-string">[]</span>
+        <span class="hljs-attr">items:</span>
+          <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">collection-link:</span> <span class="hljs-string">SubRole</span>
+          <span class="hljs-attr">collection-link-value:</span> <span class="hljs-string">_id</span>
+          <span class="hljs-attr">collection-link-label:</span> <span class="hljs-string">label</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Sub</span> <span class="hljs-string">Roles</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-string">"17%"</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">multipleselect</span> <span class="hljs-comment"># select, combobox, text,  radio, checkbox, switch, textarea, autocomplete</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Sub</span> <span class="hljs-string">Roles</span>
+            <span class="hljs-attr">selection-limit:</span> <span class="hljs-number">0</span>
+</div></code></pre>
+<h3 id="dependent-fields-linked-to-a-collection">Dependent fields linked to a collection</h3>
+<pre class="hljs"><code><div>    <span class="hljs-attr">role:</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">"Role  allowed in this Program"</span>
+        <span class="hljs-attr">example:</span> <span class="hljs-string">"5c78a060c15bca840749e44b"</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">collection-link:</span> <span class="hljs-string">Role</span>
+          <span class="hljs-attr">collection-link-value:</span> <span class="hljs-string">_id</span>
+          <span class="hljs-attr">collection-link-label:</span> <span class="hljs-string">label</span>
+          <span class="hljs-attr">dependent:</span>
+            <span class="hljs-bullet">-</span> <span class="hljs-attr">targetField:</span> <span class="hljs-string">sub_roles</span>
+              <span class="hljs-attr">remoteKey:</span> <span class="hljs-string">role</span>
+              <span class="hljs-attr">localKey:</span> <span class="hljs-string">_id</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Role</span>
+            <span class="hljs-attr">width:</span> <span class="hljs-string">"83%"</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">combo</span> <span class="hljs-comment"># select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time, grid</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Role</span>
+            <span class="hljs-attr">selection-limit:</span> <span class="hljs-number">1</span>
+    <span class="hljs-attr">sub_roles:</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"array"</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">Sub</span> <span class="hljs-string">Roles</span> <span class="hljs-string">allowed</span> <span class="hljs-string">in</span> <span class="hljs-string">this</span> <span class="hljs-string">Program</span>
+        <span class="hljs-attr">default:</span> <span class="hljs-string">[]</span>
+        <span class="hljs-attr">items:</span>
+          <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">collection-link:</span> <span class="hljs-string">SubRole</span>
+          <span class="hljs-attr">collection-link-value:</span> <span class="hljs-string">_id</span>
+          <span class="hljs-attr">collection-link-label:</span> <span class="hljs-string">label</span>
+          <span class="hljs-attr">dependentOf:</span> <span class="hljs-string">role</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Sub</span> <span class="hljs-string">Roles</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-string">"17%"</span> <span class="hljs-comment"># take 20% considering the altrow indicator</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">multipleselect</span> <span class="hljs-comment"># select, combobox, text,  radio, checkbox, switch, textarea, autocomplete</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Sub</span> <span class="hljs-string">Roles</span>
+            <span class="hljs-attr">selection-limit:</span> <span class="hljs-number">0</span>
+</div></code></pre>
+<h3 id="date-time-field">Date-Time Field</h3>
+<pre class="hljs"><code><div>    <span class="hljs-attr">createdAt:</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">"Created At"</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">format:</span> <span class="hljs-string">"date-time"</span>
+        <span class="hljs-attr">example:</span> <span class="hljs-string">"2017-07-21"</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Created</span> <span class="hljs-string">At</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-number">120</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">date-time</span> <span class="hljs-comment"># select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time, date-time</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Created</span> <span class="hljs-string">At</span>
+</div></code></pre>
+<h3 id="date-field">Date field</h3>
+<pre class="hljs"><code><div>    <span class="hljs-attr">birthDate:</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">"Birth Date"</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">format:</span> <span class="hljs-string">"date"</span>
+        <span class="hljs-comment">#nullable: true</span>
+        <span class="hljs-attr">example:</span> <span class="hljs-string">"2017-07-21"</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">true</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Birth</span> <span class="hljs-string">Date</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-string">"120"</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">date</span> <span class="hljs-comment"># select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Birth</span> <span class="hljs-string">Date</span>
+</div></code></pre>
+<h3 id="formatedvalidated-ssn-field">Formated/Validated SSN field</h3>
+<pre class="hljs"><code><div>    <span class="hljs-attr">ssn:</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">"Social Security Number"</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">format:</span> <span class="hljs-string">ssn</span>
+        <span class="hljs-attr">example:</span> <span class="hljs-string">"000-00-0000"</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">SSN</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-string">"100"</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">SSN</span>
+</div></code></pre>
+<h3 id="avatar-field">Avatar field</h3>
+<pre class="hljs"><code><div>    <span class="hljs-attr">avatar:</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">"Avatar - It can be the path of a file on CDN or a base64 encoded file. If you provide a base64 image hash it will be saved as file on CDN."</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">format:</span> <span class="hljs-string">"base64"</span>
+        <span class="hljs-attr">example:</span> <span class="hljs-string">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/sdf........"</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">true</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Avatar</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-string">"*"</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">base64</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Avatar</span>
+            <span class="hljs-attr">accept:</span> <span class="hljs-string">"image/png, image/jpeg"</span>
+            <span class="hljs-attr">file-size:</span> <span class="hljs-number">0.5</span>
+            <span class="hljs-attr">media-type:</span> <span class="hljs-string">avatar</span> <span class="hljs-comment"># avatar, image, document</span>
+</div></code></pre>
+<h3 id="single-file-field">Single file field</h3>
+<pre class="hljs"><code><div>    <span class="hljs-attr">signature:</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">"Signature - It can be the path of a file on CDN or a base64 encoded file. If you provide a base64 image hash it will be saved as file on CDN."</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"string"</span>
+        <span class="hljs-attr">format:</span> <span class="hljs-string">"base64"</span>
+        <span class="hljs-attr">example:</span> <span class="hljs-string">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/sdf........"</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">true</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Signature</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-string">"120"</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">base64</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Signature</span>
+            <span class="hljs-attr">accept:</span> <span class="hljs-string">"image/png, image/jpeg"</span>
+            <span class="hljs-attr">file-size:</span> <span class="hljs-number">4</span>
+            <span class="hljs-attr">media-type:</span> <span class="hljs-string">image</span> <span class="hljs-comment"># avatar, image, document</span>
+</div></code></pre>
+<h3 id="muliple-file-field">Muliple file field</h3>
+<pre class="hljs"><code><div>    <span class="hljs-attr">file:</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">"File attachments"</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"array"</span>
+        <span class="hljs-attr">items:</span>
+          <span class="hljs-string">$ref:</span> <span class="hljs-string">"#/definitions/file"</span>
+        <span class="hljs-comment">#default: []</span>
+        <span class="hljs-attr">x-uploader:</span> <span class="hljs-literal">true</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">true</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Files</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-string">"*"</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">grid</span> <span class="hljs-comment"># select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time, grid</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Files</span>
+            <span class="hljs-attr">isSchema:</span> <span class="hljs-literal">true</span>
+</div></code></pre>
+<h3 id="multidimensional-field--grid-linked-to-a-schema">Multidimensional field / Grid linked to a schema</h3>
+<pre class="hljs"><code><div>    <span class="hljs-attr">address:</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">"Addresses"</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"array"</span>
+        <span class="hljs-attr">items:</span>
+          <span class="hljs-string">$ref:</span> <span class="hljs-string">"#/definitions/address"</span>
+        <span class="hljs-attr">default:</span> <span class="hljs-string">[]</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">true</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Address</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-string">"120"</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">type:</span> <span class="hljs-string">grid</span> <span class="hljs-comment"># select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time, grid</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">Address</span>
+            <span class="hljs-attr">isSchema:</span> <span class="hljs-literal">true</span>
+</div></code></pre>
+<h3 id="integer-field">Integer field</h3>
+<pre class="hljs"><code><div>    <span class="hljs-attr">size:</span>
+        <span class="hljs-attr">description:</span> <span class="hljs-string">'File size'</span>
+        <span class="hljs-attr">type:</span> <span class="hljs-string">"integer"</span>
+        <span class="hljs-attr">format:</span> <span class="hljs-string">"int32"</span>
+        <span class="hljs-attr">example:</span> <span class="hljs-number">12300</span>
+        <span class="hljs-attr">readOnly:</span> <span class="hljs-literal">true</span>
+        <span class="hljs-attr">x-editable:</span> <span class="hljs-literal">false</span>
+        <span class="hljs-attr">x-ui:</span>
+          <span class="hljs-attr">grid:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">false</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">File</span> <span class="hljs-string">Size</span>
+            <span class="hljs-attr">width:</span>  <span class="hljs-number">100</span>
+          <span class="hljs-attr">form:</span>
+            <span class="hljs-attr">hide:</span> <span class="hljs-literal">true</span>
+            <span class="hljs-attr">label:</span> <span class="hljs-string">File</span> <span class="hljs-string">Size</span>
+</div></code></pre>
+<h3 id="x-ui-available-properties">x-ui available properties:</h3>
 <ul>
-<li><code>--m</code></li>
+<li><code>collection-link</code></li>
 </ul>
-<pre class="hljs"><code><div>--m=<span class="hljs-string">"Commit message Goes here"</span>
-</div></code></pre>
-<p>Where <code>Commit message Goes here</code> is your custom commit message.</p>
-<p><strong>Deploying to test passing a custom message to be used when commiting to github</strong></p>
-<pre class="hljs"><code><div>$ npm run deploy-test -- --m=<span class="hljs-string">"first QB integration"</span>
-
-</div></code></pre>
-<p>Where <code>Final version</code> is your custom commit message.</p>
-<p><strong>Deploying to test with default commit message</strong></p>
-<pre class="hljs"><code><div>$ npm run deploy-test
-
-</div></code></pre>
-<p><strong>Deploying to production passing a custom message to be used when commiting to github</strong></p>
-<pre class="hljs"><code><div>$ npm run deploy-production -- --m=<span class="hljs-string">"Final version"</span>
-
-</div></code></pre>
-<p>Where <code>Final version</code> is your custom commit message.</p>
-<p><strong>Deploying to production with default commit message</strong></p>
-<pre class="hljs"><code><div>$ npm run deploy-production
-
-</div></code></pre>
+<p>Sets the collection name which will be used to pull data from</p>
+<ul>
+<li><code>collection-link-value</code></li>
+</ul>
+<p>Sets the collection property which will be used as value on Selection/Multi Selection fields</p>
+<ul>
+<li><code>collection-link-label</code></li>
+</ul>
+<p>Sets the collection property which will be used as label on Selection/Multi Selection fields</p>
+<ul>
+<li><code>form</code></li>
+</ul>
+<p>Sets how a property behaves on a form -&gt; Form Field</p>
+<ul>
+<li><code>grid</code></li>
+</ul>
+<p>Sets how a property behaves on a grid -&gt; Grid Column</p>
+<h3 id="form-available-properties">form available properties:</h3>
+<ul>
+<li><code>type</code></li>
+<li><code>hide</code></li>
+<li><code>label</code></li>
+<li><code>isSchema</code></li>
+<li>``</li>
+</ul>
 <hr>
 <p>For a detailed explanation on how things work, check out the <a href="http://vuejs-templates.github.io/webpack/">guide</a> and <a href="http://vuejs.github.io/vue-loader">docs for vue-loader</a>.</p>
 <h3 id="reference">Reference</h3>
@@ -502,7 +853,6 @@ npm run dev
 <li><a href="http://echarts.baidu.com/option.html">ECharts</a></li>
 <li><a href="http://stylus-lang.com/">Stylus</a></li>
 </ul>
-<h2 id="license">License</h2>
 
 </body>
 </html>

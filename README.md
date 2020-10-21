@@ -4,22 +4,10 @@
 
 "Runtime" generated VUE User Interfaces by leveraging extended Swagger OpenAPI specification as declarative metadata.
 
-## The scenario
 
-**To create backend and it frontend for "Enterprise offline first web applications".**
+## Problems
 
-On the backend it is common to use a declarative standard to "generate" code and documentation for REST APIs.
-
-A well known declarative standard is the [OpenAPI](https://swagger.io/specification/) specification, used on [Swagger](https://swagger.io/).
-
-Swagger is a set of tools for API development, documentation, testing and more.
-
->> The OpenAPI Specification, formerly known as the Swagger Specification, is the world’s standard for defining RESTful interfaces. The OAS enables developers to design a technology-agnostic API interface that forms the basis of their API development and consumption.
-
-
-## The problems
-
-Rather than the back end, where you have a set of tools to automate code and documentation development, the Frontend development still being a intensive manual and long task, due several reasons:
+Rather than the back end, where you have a set of tools to automate code and documentation development, the Frontend development still being an intensive manual and long task, due several reasons:
 
 - Data "payloads"
 
@@ -35,21 +23,37 @@ Frontend developers should to validate payloads before sending data to end point
 Frontend developers are required to know how backend data looks like to correctly/friendly display it on screens. This requires manual and thorough work.
 
 
-
 - Frontend development tends to be longer and harder than Backend development. You probably may need more developers on Frontend rather than the Backend
-
 
 
 - "SCRUM based" application development
 
+In the cases where you have a kind of application which should be flexible in terms of frequently adding or removing features you usually need to manually change files in both client and server side. You usually need to change specification files, database models, grids and forms structure to achieve that goal.
+
+- Components setup/configuration
+
+In modern JS SPAs, screens are usually component architecture based. Some known components are grids, forms, form fields, toolbars and others.
+
+Every component setup must match the backend standards in a certain level.
+
+In a single screen you might need to repeatedly to perform several component configuration, always looking to your backend specification.
+
+- Code quality
 
 
+## Solution
+
+**Employing mainly [RAD](https://en.wikipedia.org/wiki/Rapid_application_development) and DRY methodologies to generate frontend and backend components.**
 
 
+On the backend it is common to use a declarative standard to "generate" code and documentation for REST APIs.
 
-using standards and [RAD](https://en.wikipedia.org/wiki/Rapid_application_development) methodologies
+A well known declarative standard is the [OpenAPI](https://swagger.io/specification/) specification, used on [Swagger](https://swagger.io/).
 
-[RAD](https://en.wikipedia.org/wiki/Rapid_application_development)
+Swagger is a set of tools for API development, documentation, testing and more.
+
+>> The OpenAPI Specification, formerly known as the Swagger Specification, is the world’s standard for defining RESTful interfaces. The OAS enables developers to design a technology-agnostic API interface that forms the basis of their API development and consumption.
+
 
 
 
@@ -59,28 +63,38 @@ using standards and [RAD](https://en.wikipedia.org/wiki/Rapid_application_develo
 ```bash
 ├── build
 ├── config (Webpack)
+├── deploy -> application deploy configuration
+├── mock
 ├── src
 │   ├── api
 │   ├── components
-│   ├── mixins
-│   ├── pages (or views)
+│   │   ├── xCrud -> swagger based automatically generated CRUD (Vuetify)
+│   │   ├── xCrud -> swagger based automatically generated CRUD (Vuetify)
+│   ├── helpers
+│   │   ├── mediator -> Message Mediator && IndexedDB library
+│   │   ├── helper.js -> helper functions
+│   │   ├── session.js -> client side session implementation
+│   │   └── store.js -> Vuex implementation
+│   ├── pages
+│   │   ├── FinanceCategory -> swagger based automatically generated CRUD (Vuetify)
+│   │   ├── MAPForms -> Visual Form Builder (JQWidget)
+│   │   └── User -> swagger based automatically generated CRUD (JQWidget)
 │   ├── router
 │   ├── util
-│   ├── theme
-│   │   ├── default.styl
-│   └── App.vue
-│   └── event.js
-│   └── main.js
-├── dist
-├── release
-├── static (or asset)
-├── mock (or script to build mock data)
+│   ├── App.vue
+│   ├── event.js
+│   ├── main.js
+│   └── Mediator.js -> Mediator implementation
+├── static
 ├── node_modules
 ├── test
 ├── README.md
 ├── package.json
+├── Jumentix-Vue-UI.js -> express implementation to serve the static app
 ├── index.html
 └── .gitignore
+```
+
 
 ### Build Setup
 
@@ -93,9 +107,6 @@ npm run dev
 
 # build for production with minification
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 
 # run unit tests
 npm run unit
@@ -131,7 +142,40 @@ npm install
 npm run dev
 ``` 
 
-3. Reach UI on browser: http://localhost:8080/
+3. Reach and Setup the REST API on browser: 
+
+[http://localhost:3001/application/setup](http://localhost:3001/application/setup)
+
+
+4. Reach UI on browser: 
+
+[http://localhost:8080/](http://localhost:8080/)
+
+
+5. Do login.
+
+User: agency@agency.com
+Password: 123
+
+It is going to ask you to change your password.
+
+6. Swagger based CRUD screen - JQWidget implementation
+
+
+[http://localhost:8080/#/User](http://localhost:8080/#/User)
+
+7. Swagger based CRUD screen - Vuetify implementation
+
+
+[http://localhost:8080/#/surveys](http://localhost:8080/#/surveys)
+
+
+
+
+## Vuetify CRUD screens
+
+<img src="https://i.imgur.com/MsB0GIg.png" width="300" /> 
+
 
 
 ## Code Examples
