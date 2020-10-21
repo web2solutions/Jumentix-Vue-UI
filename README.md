@@ -79,7 +79,15 @@ Swagger is a set of tools for API development, documentation, testing and more.
 │   │   ├── FinanceCategory -> swagger based automatically generated CRUD (Vuetify)
 │   │   ├── MAPForms -> Visual Form Builder (JQWidget)
 │   │   ├── Human -> swagger based automatically generated CRUD (JQWidget)
+│   │   │   ├── formCreate -> Form screen to create new item
+│   │   │   ├── formEdit -> Form screen to edit exiting item
+│   │   │   ├── formSchema -> Form screen to create/edit items in a multiple dimensional field
+│   │   │   └── listing -> Main CRUD screen. Grid, Toolbar
 │   │   └── User -> swagger based automatically generated CRUD (JQWidget)
+│   │   │   ├── formCreate -> Form screen to create new item
+│   │   │   ├── formEdit -> Form screen to edit exiting item
+│   │   │   ├── formSchema -> Form screen to create/edit items in a multiple dimensional field
+│   │   │   └── listing -> Main CRUD screen. Grid, Toolbar
 │   ├── router
 │   ├── util
 │   ├── App.vue
@@ -163,7 +171,8 @@ It is going to ask you to change your password.
 6. Swagger based CRUD screen - JQWidget implementation
 
 
-[http://localhost:8080/#/User](http://localhost:8080/#/User)
+[http://localhost:8080/#/human](http://localhost:8080/#/human)
+
 
 7. Swagger based CRUD screen - Vuetify implementation
 
@@ -199,9 +208,12 @@ It is going to ask you to change your password.
 
 ### OpenAPI specification for *Human Data Entity*
 
-[Human Entity specification](https://github.com/web2solutions/Jumentix/blob/master/src/lib/api/swagger/definitions/Human.definition.yaml#L59)
+[Check Human Entity specification on github](https://github.com/web2solutions/Jumentix/blob/master/src/lib/api/swagger/definitions/Human.definition.yaml#L59)
 
 
+### Frontend "generic component" for  *Human Data Entity*
+
+[https://github.com/web2solutions/Jumentix-Vue-UI/tree/master/src/pages/Human](https://github.com/web2solutions/Jumentix-Vue-UI/tree/master/src/pages/Human)
 
 ## Vuetify CRUD screens
 
