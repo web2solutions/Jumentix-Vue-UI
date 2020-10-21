@@ -251,6 +251,17 @@ It is going to ask you to change your password.
 
 ### Frontend "generic component" for  *Human Data Entity*
 
+The generic component is CRUD application which has it components setup in runtime. When you load the screen, it reads a related swagger specification and then use that information to setup the several components configuration.
+
+The following screens have the same codebase, but it differs in terms of what specification is being used as metadata to setup those screen components.
+
+[http://localhost:8080/#/human](http://localhost:8080/#/human)
+
+[http://localhost:8080/#/user](http://localhost:8080/#/user)
+
+
+#### Code
+
 [https://github.com/web2solutions/Jumentix-Vue-UI/tree/master/src/pages/Human](https://github.com/web2solutions/Jumentix-Vue-UI/tree/master/src/pages/Human)
 
 
