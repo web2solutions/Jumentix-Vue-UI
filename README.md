@@ -78,6 +78,7 @@ Swagger is a set of tools for API development, documentation, testing and more.
 │   ├── pages
 │   │   ├── FinanceCategory -> swagger based automatically generated CRUD (Vuetify)
 │   │   ├── MAPForms -> Visual Form Builder (JQWidget)
+│   │   ├── Human -> swagger based automatically generated CRUD (JQWidget)
 │   │   └── User -> swagger based automatically generated CRUD (JQWidget)
 │   ├── router
 │   ├── util
@@ -170,6 +171,431 @@ It is going to ask you to change your password.
 [http://localhost:8080/#/surveys](http://localhost:8080/#/surveys)
 
 
+
+## JQWidgets CRUD screens for *Human Data Entity*
+
+<img src="https://i.imgur.com/IAkTief.png" width="300" /> 
+
+<img src="https://i.imgur.com/jIRR9TZ.png" width="300" /> 
+
+<img src="https://i.imgur.com/QsqWGta.png" width="300" /> 
+
+<img src="https://i.imgur.com/MzFlVes.png" width="300" /> 
+
+<img src="https://i.imgur.com/KVLbSPc.png" width="300" /> 
+
+<img src="https://i.imgur.com/tRNCQDI.png" width="300" /> 
+
+<img src="https://i.imgur.com/la4cTvI.png" width="300" /> 
+
+<img src="https://i.imgur.com/sHpnDee.png" width="300" /> 
+
+<img src="https://i.imgur.com/5uLw0l9.png" width="300" /> 
+
+<img src="https://i.imgur.com/6lwpb7g.png" width="300" /> 
+
+<img src="https://i.imgur.com/xlnmOrL.png" width="300" /> 
+
+
+### OpenAPI specification for *Human Data Entity*
+
+```yml
+  Human:
+    required: ["first_name", "ssn", "last_name","gender","sexual_orientation"]
+    properties:
+      _id:
+        type: "string"
+        description: The Human identifier
+        example: "5c78a060c15bca840749e44b"
+        readOnly: true
+        x-ui:
+          grid:
+            hide: false
+            label: _id
+            width:  "0"
+          form:
+            hide: true
+            label: _id
+      name:
+        description: "Name"
+        type: "string"
+        readOnly: true
+        x-editable: false
+        x-virtual: true
+        x-ui:
+          grid:
+            hide: true
+            label: name
+            width:  "300"
+          form:
+            hide: false
+            label: name
+      first_name:
+        description: "First Name"
+        type: "string"
+        example: "Thomas"
+        minLength: 2
+        x-ui:
+          grid:
+            hide: false
+            label: First name
+            width:  "120"
+          form:
+            hide: false
+            label: First name
+      last_name:
+        description: "Last Name"
+        type: "string"
+        example: "Issac"
+        minLength: 2
+        x-ui:
+          grid:
+            hide: false
+            label: Last name
+            width:  "120"
+          form:
+            hide: false
+            label: Last name
+      user:
+        description: "System Account associated to this Human"
+        type: "string"
+        example: "5c78a060c15bca840749e44b"
+        x-ui:
+          collection-link: User
+          collection-link-value: user_id
+          collection-link-label: username
+          grid:
+            hide: false
+            label: User
+            width:  "120"
+          form:
+            type: combobox # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete
+            hide: false
+            label: User
+            selection-limit: 1
+      nationality:
+        description: "Nationality"
+        type: "string"
+        example: "American"
+        enum: ["Afghan", "Albanian", "Algerian", "American", "Andorran", "Angolan", "Antiguans", "Argentinean", "Armenian", "Australian", "Austrian", "Azerbaijani", "Bahamian", "Bahraini", "Bangladeshi", "Barbadian", "Barbudans", "Batswana", "Belarusian", "Belgian", "Belizean", "Beninese", "Bhutanese", "Bolivian", "Bosnian", "Brazilian", "British", "Bruneian", "Bulgarian", "Burkinabe", "Burmese", "Burundian", "Cambodian", "Cameroonian", "Canadian", "Cape Verdean", "Central African", "Chadian", "Chilean", "Chinese", "Colombian", "Comoran", "Congolese", "Costa Rican", "Croatian", "Cuban", "Cypriot", "Czech", "Danish", "Djibouti", "Dominican", "Dutch", "East Timorese", "Ecuadorean", "Egyptian", "Emirian", "Equatorial Guinean", "Eritrean", "Estonian", "Ethiopian", "Fijian", "Filipino", "Finnish", "French", "Gabonese", "Gambian", "Georgian", "German", "Ghanaian", "Greek", "Grenadian", "Guatemalan", "Guinea-Bissauan", "Guinean", "Guyanese", "Haitian", "Herzegovinian", "Honduran", "Hungarian", "I-Kiribati", "Icelander", "Indian", "Indonesian", "Iranian", "Iraqi", "Irish", "Israeli", "Italian", "Ivorian", "Jamaican", "Japanese", "Jordanian", "Kazakhstani", "Kenyan", "Kittian and Nevisian", "Kuwaiti", "Kyrgyz", "Laotian", "Latvian", "Lebanese", "Liberian", "Libyan", "Liechtensteiner", "Lithuanian", "Luxembourger", "Macedonian", "Malagasy", "Malawian", "Malaysian", "Maldivan", "Malian", "Maltese", "Marshallese", "Mauritanian", "Mauritian", "Mexican", "Micronesian", "Moldovan", "Monacan", "Mongolian", "Moroccan", "Mosotho", "Motswana", "Mozambican", "Namibian", "Nauruan", "Nepalese", "New Zealander", "Nicaraguan", "Nigerian", "Nigerien", "North Korean", "Northern Irish", "Norwegian", "Omani", "Pakistani", "Palauan", "Panamanian", "Papua New Guinean", "Paraguayan", "Peruvian", "Polish", "Portuguese", "Qatari", "Romanian", "Russian", "Rwandan", "Saint Lucian", "Salvadoran", "Samoan", "San Marinese", "Sao Tomean", "Saudi", "Scottish", "Senegalese", "Serbian", "Seychellois", "Sierra Leonean", "Singaporean", "Slovakian", "Slovenian", "Solomon Islander", "Somali", "South African", "South Korean", "Spanish", "Sri Lankan", "Sudanese", "Surinamer", "Swazi", "Swedish", "Swiss", "Syrian", "Taiwanese", "Tajik", "Tanzanian", "Thai", "Togolese", "Tongan", "Trinidadian or Tobagonian", "Tunisian", "Turkish", "Tuvaluan", "Ugandan", "Ukrainian", "Uruguayan", "Uzbekistani", "Venezuelan", "Vietnamese", "Welsh", "Yemenite", "Zambian", "Zimbabwean"] 
+        x-ui:
+          grid:
+            hide: false
+            label: Nationality
+            width:  "100"
+          form:
+            type: select
+            hide: false
+            label: Nationality
+      gender:
+        description: "Human Gender"
+        type: "string"
+        enum: ["Male","Female","Female to Male","Male to Female","In Transition","Other","Unknown"]
+        example: "Male"
+        default: "Male"
+        x-ui:
+          grid:
+            hide: true
+            label: Gender
+            width:  "100"
+          form:
+            type: select # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete
+            hide: false
+            label: Gender
+            options: ["Male","Female","Female to Male","Male to Female","In Transition","Other","Unknown"]
+            selection-limit: 1
+      sexual_orientation:
+        description: "Sexual Orientation"
+        type: "string"
+        enum: ["Male","Female","Heterosexual/Straight","Gay/Lesbian","Other","Prefer Not to Answer","Unknown"]
+        example: "Heterosexual/Straight"
+        default: "Heterosexual/Straight"
+        x-ui:
+          grid:
+            hide: false
+            label: Sexual Orientation
+            width:  "100"
+          form:
+            type: select # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time
+            hide: false
+            label: Sexual Orientation
+            options: ["Male","Female","Heterosexual/Straight","Gay/Lesbian","Other","Prefer Not to Answer","Unknown"]
+            selection-limit: 1
+      birthDate:
+        description: "Birth Date"
+        type: "string"
+        format: "date"
+        #nullable: true
+        example: "2017-07-21"
+        x-ui:
+          grid:
+            hide: true
+            label: Birth Date
+            width:  "120"
+          form:
+            type: date # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time
+            hide: false
+            label: Birth Date
+      deathDate:
+        description: "Death Date"
+        type: "string"
+        format: "date"
+        #nullable: true
+        example: "2017-07-21"
+        x-ui:
+          grid:
+            hide: true
+            label: Death Date
+            width:  "120"
+          form:
+            type: date # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time
+            hide: false
+            label: Death Date
+      ssn:
+        description: "Social Security Number"
+        type: "string"
+        format: ssn
+        example: "000-00-0000"
+        x-ui:
+          grid:
+            hide: false
+            label: SSN
+            width:  "100"
+          form:
+            hide: false
+            label: SSN
+      photo:
+        description: "Photo - It can be the path of a file on CDN or a base64 encoded file. If you provide a base64 image hash it will be saved as file on CDN."
+        type: "string"
+        format: "base64"
+        example: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/sdf........"
+        x-ui:
+          grid:
+            hide: true
+            label: Photo
+            width:  "120"
+          form:
+            type: base64
+            hide: false
+            label: Photo
+            accept: "image/png, image/jpeg"
+            file-size: 0.5
+            media-type: avatar # avatar, image, document
+      signature:
+        description: "Signature - It can be the path of a file on CDN or a base64 encoded file. If you provide a base64 image hash it will be saved as file on CDN."
+        type: "string"
+        format: "base64"
+        example: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/sdf........"
+        x-ui:
+          grid:
+            hide: true
+            label: Signature
+            width:  "120"
+          form:
+            type: base64
+            hide: false
+            label: Signature
+            accept: "image/png, image/jpeg"
+            file-size: 4
+            media-type: image # avatar, image, document
+      radio_group:
+        description: "Radio group field example"
+        type: "string"
+        x-ui:
+          grid:
+            hide: true
+            label: Radio group
+            width:  "100"
+          form:
+            type: radio_group # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete
+            hide: false
+            label: Radio group
+            options:
+              - label: "label 1"
+                value: "value 1"
+              - label: "label 2"
+                value: "value 2"
+              - label: "label 3"
+                value: "value 3"
+              - label: "label 4"
+                value: "value 4"
+      checkbox_group:
+        description: "Checkbox group field example"
+        type: "string"
+        example: "Male"
+        default: "Male"
+        x-ui:
+          grid:
+            hide: true
+            label: Checkbox group
+            width:  "100"
+          form:
+            type: checkbox_group # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete
+            hide: false
+            label: Checkbox group
+            options:
+              - label: "label 1"
+                value: "value 1"
+              - label: "label 2"
+                value: "value 2"
+              - label: "label 3"
+                value: "value 3"
+              - label: "label 4"
+                value: "value 4"
+      email:
+        description: "Email Addresses"
+        type: "array"
+        items:
+          $ref: "#/definitions/email"
+        default: []
+        x-ui:
+          grid:
+            hide: true
+            label: Email Address
+            width:  "120"
+          form:
+            type: grid # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time, grid
+            hide: false
+            label: Email Address
+            isSchema: true
+      address:
+        description: "Addresses"
+        type: "array"
+        items:
+          $ref: "#/definitions/address"
+        default: []
+        x-ui:
+          grid:
+            hide: true
+            label: Address
+            width:  "120"
+          form:
+            type: grid # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time, grid
+            hide: false
+            label: Address
+            isSchema: true
+      phone:
+        description: "Phones"
+        type: "array"
+        items:
+          $ref: "#/definitions/phone"
+        #default: []
+        x-ui:
+          grid:
+            hide: true
+            label: Phone
+            width:  "120"
+          form:
+            type: grid # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time, grid
+            hide: false
+            label: Phone
+            isSchema: true
+      memo:
+        description: "Memo notes"
+        type: "array"
+        items:
+          $ref: "#/definitions/memo"
+        #default: []
+        x-ui:
+          grid:
+            hide: true
+            label: Memo
+            width:  "120"
+          form:
+            type: grid # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time, grid
+            hide: false
+            label: Memo
+            isSchema: true
+      file:
+        description: "File attachments"
+        type: "array"
+        items:
+          $ref: "#/definitions/file"
+        #default: []
+        x-uploader: true
+        x-ui:
+          grid:
+            hide: true
+            label: Files
+            width:  "120"
+          form:
+            type: grid # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time, grid
+            hide: false
+            label: Associated Files
+            isSchema: true
+      createdBy:
+        description: "Created By"
+        type: "string"
+        example: "5c78a060c15bca840749e44b"
+        readOnly: true
+        x-editable: false
+        x-ui:
+          collection-link: Human
+          collection-link-value: _id
+          collection-link-label: name
+          grid:
+            hide: false
+            label: Created By
+            width:  120
+          form:
+            type: combobox # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete
+            hide: false
+            label: Created By
+            selection-limit: 1
+      createdAt:
+        description: "Created At"
+        type: "string"
+        format: "date-time"
+        #nullable: true
+        example: "2017-07-21"
+        readOnly: true
+        x-editable: false
+        x-ui:
+          grid:
+            hide: false
+            label: Created At
+            width:  120
+          form:
+            type: date-time # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time, date-time
+            hide: false
+            label: Created At
+      updatedBy:
+        description: "Updated By"
+        type: "string"
+        example: "5c78a060c15bca840749e44b"
+        readOnly: true
+        x-editable: false
+        x-ui:
+          collection-link: Human
+          collection-link-value: _id
+          collection-link-label: name
+          grid:
+            hide: false
+            label: Updated By
+            width:  120
+          form:
+            type: combobox # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete
+            hide: false
+            label: Updated By
+            selection-limit: 1
+      updatedAt:
+        description: "Updated At"
+        type: "string"
+        format: "date-time"
+        #nullable: true
+        example: "2017-07-21"
+        readOnly: true
+        x-editable: false
+        x-ui:
+          grid:
+            hide: false
+            label: Updated At
+            width:  120
+          form:
+            type: date-time # select, combobox, text,  radio, checkbox, switch, textarea, autocomplete, date, time, date-time
+            hide: false
+            label: Updated At
+``` 
 
 
 ## Vuetify CRUD screens
