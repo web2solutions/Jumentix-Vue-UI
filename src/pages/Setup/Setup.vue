@@ -17,7 +17,7 @@
 
                 <v-stepper v-model="setupStep" vertical class="elevation-0">
 
-                  <v-stepper-step editable :complete="setupStep > 1" step="1">Welcome to My Adoption Portal Setup</v-stepper-step>
+                  <v-stepper-step editable :complete="setupStep > 1" step="1">Welcome to JumentiX Setup</v-stepper-step>
 
                   <v-stepper-content step="1">
                     <div class="layout column align-center ma-5">

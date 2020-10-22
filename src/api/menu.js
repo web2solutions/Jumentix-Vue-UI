@@ -12,7 +12,7 @@ const Menu = [{
   group: 'configuration_management',
   // component: 'widgets',
   icon: 'widgets',
-  items: [{
+  items: [/*{
     name: 'CaseStatus',
     icon: 'widgets',
     badge: 'new',
@@ -33,7 +33,7 @@ const Menu = [{
     title: 'Case Types',
     component: 'CaseType',
     roles: ['admin', 'agency']
-  }, {
+  }, */{
     name: 'Family',
     icon: 'widgets',
     badge: 'new',
@@ -54,7 +54,7 @@ const Menu = [{
     title: 'System Accounts',
     component: 'User',
     roles: ['admin', 'agency']
-  }, {
+  }/*, {
     name: 'Program',
     icon: 'widgets',
     badge: 'new',
@@ -75,7 +75,7 @@ const Menu = [{
     title: 'Groups',
     component: 'Group',
     roles: ['admin', 'agency']
-  }, {
+  }*/, {
     name: 'Role',
     icon: 'widgets',
     badge: 'new',
@@ -113,7 +113,7 @@ const Menu = [{
   icon: 'business',
   name: 'EntityManager',
   roles: ['OFF']
-}, {
+}/*, {
   title: 'Contact',
   icon: 'people_outline',
   name: 'ContactsDashboard',
@@ -130,7 +130,7 @@ const Menu = [{
   icon: 'insert_drive_file',
   name: 'MyCases',
   roles: ['parent', 'child']
-}, {
+}*/, {
   title: 'My Finance',
   // group: 'apps',
   icon: 'local_atm',
@@ -142,7 +142,7 @@ const Menu = [{
   icon: 'local_atm',
   name: 'Finance',
   roles: ['admin', 'manager', 'caseworker', 'agency']
-}, {
+}, /*{
   title: 'Cases',
   // group: 'apps',
   icon: 'insert_drive_file',
@@ -179,7 +179,7 @@ const Menu = [{
   icon: 'poll',
   name: 'Survey',
   roles: ['admin', 'agency', 'manager']
-}, {
+},*/ {
   title: 'Messages',
   // group: 'apps',
   name: 'Mail',
@@ -192,7 +192,7 @@ const Menu = [{
   name: 'Documents',
   roles: ['OFF']
 }, {
-  title: 'Training & Events',
+  title: 'Events',
   // group: 'apps',
   icon: 'fas fa-chalkboard-teacher',
   name: 'TrainingEvents',
@@ -226,19 +226,33 @@ const Menu = [{
   // group: 'apps',
   icon: 'account_circle',
   name: 'Account',
-  roles: ['*']
+  roles: ['OFF']
 }, {
   title: 'Help',
   // group: 'apps',
   icon: 'help_outline',
   name: 'Help',
-  roles: ['*']
+  roles: ['OFF']
 }, {
   divider: true,
   roles: ['admin']
 }, {
   header: 'Swagger based UI Elements',
   roles: ['admin']
+}, {
+  name: 'Human',
+  icon: 'widgets',
+  badge: 'new',
+  title: 'People',
+  component: 'Human',
+  roles: ['admin', 'agency']
+}, {
+  name: 'User',
+  icon: 'widgets',
+  badge: 'new',
+  title: 'System Accounts',
+  component: 'User',
+  roles: ['admin', 'agency']
 }, {
   title: 'Chat',
   // group: 'apps',
