@@ -97,16 +97,16 @@ const Menu = [{
     component: 'Setup',
     roles: ['admin']
   }*/],
-  roles: ['admin', 'agency']
+  roles: []
 }, {
   divider: true,
-  roles: ['admin', 'agency']
+  roles: []
 }, {
   title: 'Users',
   // group: 'apps',
   icon: 'fas fa-users-cog',
   name: 'User',
-  roles: ['admin', 'manager', 'caseworker', 'agency']
+  roles: []
 }, {
   title: 'Entity Manager',
   // group: 'apps',
@@ -173,13 +173,13 @@ const Menu = [{
   icon: 'fas fa-layer-group',
   name: 'Group',
   roles: ['admin', 'agency', 'manager']
-}, {
+},*/ {
   title: 'Surveys',
   // group: 'apps',
   icon: 'poll',
   name: 'Survey',
   roles: ['admin', 'agency', 'manager']
-},*/ {
+}, {
   title: 'Messages',
   // group: 'apps',
   name: 'Mail',
