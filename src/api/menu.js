@@ -33,14 +33,14 @@ const Menu = [{
     title: 'Case Types',
     component: 'CaseType',
     roles: ['admin', 'agency']
-  }, */{
+  }, {
     name: 'Family',
     icon: 'widgets',
     badge: 'new',
     title: 'Family',
     component: 'Family',
-    roles: ['admin', 'agency']
-  }, {
+    roles: []
+  }, */{
     name: 'Human',
     icon: 'widgets',
     badge: 'new',
@@ -75,7 +75,7 @@ const Menu = [{
     title: 'Groups',
     component: 'Group',
     roles: ['admin', 'agency']
-  }*/, {
+  }, {
     name: 'Role',
     icon: 'widgets',
     badge: 'new',
@@ -96,7 +96,7 @@ const Menu = [{
     title: 'System Setup',
     component: 'Setup',
     roles: ['admin']
-  }],
+  }*/],
   roles: ['admin', 'agency']
 }, {
   divider: true,
@@ -135,13 +135,13 @@ const Menu = [{
   // group: 'apps',
   icon: 'local_atm',
   name: 'MyFinance',
-  roles: ['parent', 'child']
+  roles: []
 }, {
   title: 'Finance',
   // group: 'apps',
   icon: 'local_atm',
   name: 'Finance',
-  roles: ['admin', 'manager', 'caseworker', 'agency']
+  roles: []
 }, /*{
   title: 'Cases',
   // group: 'apps',
@@ -196,7 +196,7 @@ const Menu = [{
   // group: 'apps',
   icon: 'fas fa-chalkboard-teacher',
   name: 'TrainingEvents',
-  roles: ['*']
+  roles: []
 }, {
   title: 'Resources',
   // group: 'apps',
@@ -220,7 +220,7 @@ const Menu = [{
   // group: 'apps',
   icon: 'business',
   name: 'Organizations',
-  roles: ['admin', 'caseworker', 'manager', 'staff', 'agency']
+  roles: []
 }, {
   title: 'Account',
   // group: 'apps',
