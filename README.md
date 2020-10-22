@@ -32,7 +32,7 @@ In the cases where you have a kind of application which should be flexible in te
 
 - Components setup/configuration
 
-In modern JS SPAs, screens are usually component architecture based. Some known components are grids, forms, form fields, toolbars and others.
+In modern JS SPAs, screens architecture are usually component based. Some known components are grids, forms, form fields, toolbars and others.
 
 Every component setup must match the backend standards in a certain level.
 
@@ -259,7 +259,7 @@ It is going to ask you to change your password.
 
 ### Frontend "generic component" for  *Human Data Entity*
 
-The generic component is CRUD application which has it components setup in runtime. When you load the screen, it reads a related swagger specification and then use that information to setup the several components configuration.
+The generic component is a CRUD application which has it components setup in runtime. When you load the screen, it reads the associated swagger specification and then use that information to setup the several components configuration.
 
 The following screens have the same codebase, but it differs in terms of what specification is being used as metadata to setup those screen components.
 
