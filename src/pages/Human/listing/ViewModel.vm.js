@@ -124,7 +124,7 @@ const vm = {
   components: {
     // VuePerfectScrollbar
   },
-  name: 'Program',
+  name: 'Human',
   data: () => ({
     itemExpanded: false,
     mediatorDataSyncEvent: false,
