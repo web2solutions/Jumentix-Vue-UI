@@ -12,7 +12,7 @@ const Menu = [{
   group: 'configuration_management',
   // component: 'widgets',
   icon: 'widgets',
-  items: [/*{
+  items: [/* {
     name: 'CaseStatus',
     icon: 'widgets',
     badge: 'new',
@@ -41,20 +41,20 @@ const Menu = [{
     component: 'Family',
     roles: []
   }, */{
-    name: 'Human',
-    icon: 'widgets',
-    badge: 'new',
-    title: 'People',
-    component: 'Human',
-    roles: ['admin', 'agency']
-  }, {
-    name: 'User',
-    icon: 'widgets',
-    badge: 'new',
-    title: 'System Accounts',
-    component: 'User',
-    roles: ['admin', 'agency']
-  }/*, {
+      name: 'Human',
+      icon: 'widgets',
+      badge: 'new',
+      title: 'People',
+      component: 'Human',
+      roles: ['admin', 'agency']
+    }, {
+      name: 'User',
+      icon: 'widgets',
+      badge: 'new',
+      title: 'System Accounts',
+      component: 'User',
+      roles: ['admin', 'agency']
+    }/* , {
     name: 'Program',
     icon: 'widgets',
     badge: 'new',
@@ -96,7 +96,7 @@ const Menu = [{
     title: 'System Setup',
     component: 'Setup',
     roles: ['admin']
-  }*/],
+  } */],
   roles: []
 }, {
   divider: true,
@@ -113,7 +113,7 @@ const Menu = [{
   icon: 'business',
   name: 'EntityManager',
   roles: ['OFF']
-}/*, {
+}, /* , {
   title: 'Contact',
   icon: 'people_outline',
   name: 'ContactsDashboard',
@@ -130,7 +130,7 @@ const Menu = [{
   icon: 'insert_drive_file',
   name: 'MyCases',
   roles: ['parent', 'child']
-}*/, {
+} */ {
   title: 'My Finance',
   // group: 'apps',
   icon: 'local_atm',
@@ -142,7 +142,7 @@ const Menu = [{
   icon: 'local_atm',
   name: 'Finance',
   roles: []
-}, /*{
+}, /* {
   title: 'Cases',
   // group: 'apps',
   icon: 'insert_drive_file',
@@ -173,7 +173,7 @@ const Menu = [{
   icon: 'fas fa-layer-group',
   name: 'Group',
   roles: ['admin', 'agency', 'manager']
-},*/ {
+}, */ {
   title: 'Surveys',
   // group: 'apps',
   icon: 'poll',
