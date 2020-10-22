@@ -74,6 +74,15 @@ Swagger is a set of tools for API development, documentation, testing and more.
 │   │   ├── xCrud -> swagger based automatically generated CRUD (Vuetify)
 │   ├── helpers
 │   │   ├── mediator -> Message Mediator && IndexedDB library
+│   │   │   ├── eDB -> eDB files
+│   │   │   ├── _messages.js -> Default mediator warning messages
+│   │   │   ├── Composer.js -> Message composer class
+│   │   │   ├── eDB.js -> eDB library - indexedDB implementation
+│   │   │   ├── EventSystem.js -> event system used by mediator
+│   │   │   ├── hideCollections.js -> By default all swagger entities have associated indexedDB collections. Setup which entities shall not to be created as collection
+│   │   │   ├── MessageMediatorClient.js -> Message Mediator client
+│   │   │   ├── Store.js -> eDB Store implementation
+│   │   │   └── util.js -> util functions
 │   │   ├── helper.js -> helper functions
 │   │   ├── session.js -> client side session implementation
 │   │   └── store.js -> Vuex implementation
