@@ -1,7 +1,7 @@
 {
     "test": {
         "user": "apiuser",
-        "pass": "MoreThanAFeeling",
+        "pass": "xxxxx",
         "host": "192.168.1.48",
         "server_dir": "/home/apiuser/Jumentix-Vue-UI",
         "default": {
@@ -10,7 +10,7 @@
     },
     "test-mac": {
         "user": "apiuser",
-        "pass": "MoreThanAFeeling",
+        "pass": "xxxxx",
         "host": "10.1.1.62",
         "server_dir": "/home/apiuser/Jumentix-Vue-UI",
         "default": {
@@ -19,7 +19,7 @@
     },
     "production": {
         "user": "apiuser",
-        "pass": "MoreThanAFeeling",
+        "pass": "xxxxxx",
         "host": "192.168.1.64",
         "server_dir": "/home/apiuser/Jumentix-Vue-UI",
         "default": {
