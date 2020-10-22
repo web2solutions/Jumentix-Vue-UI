@@ -71,7 +71,6 @@ Swagger is a set of tools for API development, documentation, testing and more.
 │   ├── api
 │   ├── components
 │   │   ├── xCrud -> swagger based automatically generated CRUD (Vuetify)
-│   │   ├── xCrud -> swagger based automatically generated CRUD (Vuetify)
 │   ├── helpers
 │   │   ├── mediator -> Message Mediator && IndexedDB library
 │   │   │   ├── eDB -> eDB files
@@ -272,6 +271,8 @@ The following screens have the same codebase, but it differs in terms of what sp
 #### Code
 
 [https://github.com/web2solutions/Jumentix-Vue-UI/tree/master/src/pages/Human](https://github.com/web2solutions/Jumentix-Vue-UI/tree/master/src/pages/Human)
+
+[https://github.com/web2solutions/Jumentix-Vue-UI/tree/master/src/pages/User](https://github.com/web2solutions/Jumentix-Vue-UI/tree/master/src/pages/User)
 
 
 ```bash
