@@ -300,7 +300,7 @@ export default (function(global) {
       
     },
     updatePassword = (c) => {
-        let user_id = c.user_id,
+        let userId = c.userId,
             new_password = c.new_password,
             confirm_password = c.confirm_password,
             success = c.success || false,
@@ -325,7 +325,7 @@ export default (function(global) {
         }
         ajax({
             method: "PUT",
-            url: "User/" + user_id,
+            url: "User/" + userId,
             contentType: 'application/json',
             dataType: 'json',
             data: JSON.stringify(payload),

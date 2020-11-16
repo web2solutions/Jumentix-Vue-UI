@@ -14,19 +14,19 @@ let _collections_conf = {
           },*/
           from: {
               indice:{
-                  compound: ["id", "name", "user_id", "agency_id"]
+                  compound: ["id", "name", "userId", "companyId"]
               },
               type: {},
               required: true
           },
           to: {
               indice:{
-                  compound: ["id", "name", "user_id", "agency_id"]
+                  compound: ["id", "name", "userId", "companyId"]
               },
               type: {},
               required: true
           },
-          agency_id: {
+          companyId: {
               indice:{
                   unique: false
               },

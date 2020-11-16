@@ -13,8 +13,8 @@ class MediatorClient {
         if (this.started) return callback ? callback() : false;
         this.client = new MessageMediatorClient({
             name: sessionData.user.name, //  mandatory
-            user_id: sessionData.user.user_id, //  mandatory, must be unique
-            agency_id: ""+sessionData.user.agency_id, //  mandatory, must be unique
+            userId: sessionData.user.userId, //  mandatory, must be unique
+            companyId: ""+sessionData.user.companyId, //  mandatory, must be unique
             swagger: sessionData.swagger || false
         });
 

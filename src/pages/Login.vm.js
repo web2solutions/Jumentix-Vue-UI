@@ -82,7 +82,7 @@ export default
       scope.form2.confirm_password.disabled = true;
 
       session.updatePassword({
-        user_id: session.user()._id,
+        userId: session.user()._id,
         new_password,
         confirm_password,
         success: (response) =>

@@ -6,8 +6,8 @@
         <v-icon color="text--secondary">keyboard_arrow_left</v-icon>
       </v-btn>
       <template v-if="chat.users">
-        <v-avatar size="32" class="avatar-stack" v-for="(user_id,index) in chat.users" :key="index">
-          <img :src="getAvatar(user_id)" alt="">
+        <v-avatar size="32" class="avatar-stack" v-for="(userId,index) in chat.users" :key="index">
+          <img :src="getAvatar(userId)" alt="">
         </v-avatar>
       </template>
       <v-spacer></v-spacer>

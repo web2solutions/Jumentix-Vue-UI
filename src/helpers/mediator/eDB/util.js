@@ -94,9 +94,9 @@ export function validName(nickname)
  }
 
 
- export function getPersonalRoomName(user_id, agency_id)
+ export function getPersonalRoomName(userId, companyId)
  {
-     return 'agency_' + agency_id + "_user_" + user_id
+     return 'agency_' + companyId + "_user_" + userId
  }
 
 

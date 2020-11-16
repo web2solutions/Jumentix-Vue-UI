@@ -9,12 +9,12 @@ const Human =  [
       'type': 'string',
       'example': '5c78a060c15bca840749e44b'
     },
-    'user_id': {
+    'userId': {
       'description': 'User ID',
       'type': 'integer',
       'example': 123
     },
-    'agency_id': {
+    'companyId': {
       'description': 'Agency ID',
       'type': 'integer',
       'example': 123

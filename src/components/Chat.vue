@@ -128,7 +128,7 @@ export default {
       Mediator.client.on('channel:after:join', async (messageEvent) => {
           console.log('<><><><><><><><><><><><><><><><><> AFTER JOIN', messageEvent)
 
-          //let rU = await getOnLocalCollection('User', messageEvent.from.user_id)
+          //let rU = await getOnLocalCollection('User', messageEvent.from.userId)
           //let user = rU.data
       })
 
@@ -184,18 +184,18 @@ export default {
         self.users.splice(0,self.users.length)
         self.online_users.forEach( async (onlineUser) => {
           
-          console.info(onlineUser.user_id, self.onlineIds.indexOf(onlineUser.user_id))
+          console.info(onlineUser.userId, self.onlineIds.indexOf(onlineUser.userId))
           console.info('self.onlineIds', self.onlineIds, this.channels)
 
           let alreadyOnline = false
-          if(self.onlineIds.indexOf(onlineUser.user_id) > -1)
+          if(self.onlineIds.indexOf(onlineUser.userId) > -1)
           {
-            self.onlineIds.splice(self.onlineIds.indexOf(onlineUser.user_id),1)
+            self.onlineIds.splice(self.onlineIds.indexOf(onlineUser.userId),1)
             alreadyOnline = true
           }
 
-          self.onlineIds.push(onlineUser.user_id)
-          let rU = await getOnLocalCollection('User', onlineUser.user_id)
+          self.onlineIds.push(onlineUser.userId)
+          let rU = await getOnLocalCollection('User', onlineUser.userId)
           let user = rU.data
           let rh = await getOnLocalCollection('Human', user.human)
           console.log(rh)
@@ -206,7 +206,7 @@ export default {
           {
             alreadyOnline = false
             self.users.forEach( (u,i) => {
-              if(u.user_id == onlineUser.user_id)
+              if(u.userId == onlineUser.userId)
               {
                 self.users[i] = user
                 alreadyOnline = true;

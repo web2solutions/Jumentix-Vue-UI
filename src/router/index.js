@@ -28,10 +28,10 @@ async function updateUserSession (eventObj) {
     modifiedUser.id = modifiedUser._id;
     modifiedUser.name = humanDocument.first_name + ' ' + humanDocument.last_name;
     modifiedUser.user_email = modifiedUser.username;
-    // modifiedUser.agency_id = 'aaaa'
+    // modifiedUser.companyId = 'aaaa'
     // modifiedUser.group_id = ''
     modifiedUser.photo = modifiedUser.avatar;
-    modifiedUser.user_id = modifiedUser._id;
+    modifiedUser.userId = modifiedUser._id;
     modifiedUser.role = modifiedUser.roles[0];
     modifiedUser.user_type = modifiedUser.roles[0];
     $session.user = modifiedUser;
@@ -59,10 +59,10 @@ async function updateHumanSession (eventObj) {
   modifiedUser.id = modifiedUser._id;
   modifiedUser.name = modifiedUser.human.first_name + ' ' + modifiedUser.human.last_name;
   modifiedUser.user_email = modifiedUser.username;
-  // modifiedUser.agency_id = 'aaaa'
+  // modifiedUser.companyId = 'aaaa'
   // modifiedUser.group_id = ''
   modifiedUser.photo = modifiedUser.avatar;
-  modifiedUser.user_id = modifiedUser._id;
+  modifiedUser.userId = modifiedUser._id;
   modifiedUser.role = modifiedUser.roles[0];
   modifiedUser.user_type = modifiedUser.roles[0];
   $session.user = modifiedUser;

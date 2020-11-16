@@ -45,7 +45,7 @@ const schema = {
             type: 'string',
             faker: 'random.uuid'
           },
-          'user_id': {
+          'userId': {
             'type': 'string',
             'faker': 'name.firstName'
           },

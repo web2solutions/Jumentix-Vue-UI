@@ -1,11 +1,11 @@
-'use strict';
+'use strict'
 
 import {
   copy,
   getPersonalRoomName,
   sanitizeString
 }
-from './util'
+  from './util'
 
 import Composer from './Composer'
 import EventSystem from './EventSystem'
@@ -15,20 +15,20 @@ import io from 'socket.io-client'
 import moment from 'moment-timezone'
 import swal from 'sweetalert2'
 
-//import config from '../../config'
-//const env = process.env.NODE_ENV || "development"
+// import config from '../../config'
+// const env = process.env.NODE_ENV || "development"
 
-//moment.tz.setDefault(config[env].timezone)
+// moment.tz.setDefault(config[env].timezone)
 
 class MessageMediatorClient extends EventSystem {
-  constructor(c) {
+  constructor (c) {
     // console.log(c)
     super()
     this.$c = c
     this.me = false
     this.name = false
-    this.user_id = false
-    this.agency_id = false
+    this.userId = false
+    this.companyId = false
     this.started = false
     this.store = false
     this.socket = false
@@ -48,19 +48,19 @@ class MessageMediatorClient extends EventSystem {
     }
   }
 
-  isCollectionName(entityName) {
+  isCollectionName (entityName) {
     let isName = true
-    hideCollections.collections.forEach( keyword => {
+    hideCollections.collections.forEach(keyword => {
       if (entityName === keyword) {
         isName = false
       }
     })
-    hideCollections.schemas.forEach( keyword => {
+    hideCollections.schemas.forEach(keyword => {
       if (entityName === keyword) {
         isName = false
       }
     })
-    hideCollections.prefix_sufix.forEach( keyword => {
+    hideCollections.prefix_sufix.forEach(keyword => {
       if (entityName.indexOf(keyword) > -1) {
         isName = false
       }
@@ -68,17 +68,15 @@ class MessageMediatorClient extends EventSystem {
     return isName
   }
 
-  getSwaggerEntities() {
-    let allEntities = Object.keys(this.swagger.definitions)
-    let systemEntities = allEntities.filter(entityName => {
-      let set = false;
+  getSwaggerEntities () {
+    const allEntities = Object.keys(this.swagger.definitions)
+    const systemEntities = allEntities.filter(entityName => {
+      let set = false
       set = this.isCollectionName(entityName)
-      if (set)
-      {
-        if (! this.swagger.definitions[entityName].properties['_id'])
-        {
+      if (set) {
+        if (!this.swagger.definitions[entityName].properties._id) {
           // console.log(entityName, this.swagger.definitions[entityName].properties)
-          set = false;
+          set = false
         }
       }
       return set
@@ -86,22 +84,23 @@ class MessageMediatorClient extends EventSystem {
     return systemEntities
   }
 
-  setSystemEntities() {
-    let systemEntities = this.getSwaggerEntities()
-    systemEntities.forEach( name => {
+  setSystemEntities () {
+    const systemEntities = this.getSwaggerEntities()
+    systemEntities.forEach(name => {
       this.collectionDefinitions[name] = this.swagger.definitions[name]
     })
     // console.log(this.collectionDefinitions)
   }
-  connect() {
-    let self = this
-    const c = this.$c,
-      name = c.name,
-      user_id = c.user_id,
-      agency_id = c.agency_id;
-    
-    let host = c.host ? c.host : (window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'http://a243.test.myadoptionportal.com/');
-    
+
+  connect () {
+    const self = this
+    const c = this.$c
+    const name = c.name
+    const userId = c.userId
+    const companyId = c.companyId
+
+    let host = c.host ? c.host : (window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'http://a243.test.myadoptionportal.com/')
+
     if (window.location.hostname.indexOf('-prod') > -1) {
       host = 'https://a243-prod.myadoptionportal.com/'
     }
@@ -118,12 +117,12 @@ class MessageMediatorClient extends EventSystem {
 
     self.socket = io.connect(host, {
       secure: false,
-      query: "name=" + name + "&user_id=" + user_id + "&agency_id=" + agency_id,
-      //forceNew : true,
-      ///reconnection : true,
-      //reconnectionDelay : 1000,
-      //reconnectionDelayMax : 5000,
-      //reconnectionAttempts : Infinity,
+      query: 'name=' + name + '&userId=' + userId + '&companyId=' + companyId,
+      // forceNew : true,
+      /// reconnection : true,
+      // reconnectionDelay : 1000,
+      // reconnectionDelayMax : 5000,
+      // reconnectionAttempts : Infinity,
       reconnection: false,
       transports: ['websocket', 'polling']
     })
@@ -133,42 +132,42 @@ class MessageMediatorClient extends EventSystem {
     })
   }
 
-  start() {
-    let self = this,
-      c = self.$c;
+  start () {
+    const self = this
+    const c = self.$c
 
-    const name = c.name || false,
-      user_id = c.user_id || false,
-      agency_id = c.agency_id || false;
+    const name = c.name || false
+    const userId = c.userId || false
+    const companyId = c.companyId || false
 
     if (!name) {
-      self.displayError("Can not start", "Invalid name")
+      self.displayError('Can not start', 'Invalid name')
       return
     }
-    if (!user_id) {
-      self.displayError("Can not start", "Invalid user_id")
+    if (!userId) {
+      self.displayError('Can not start', 'Invalid userId')
       return
     }
-    if (!agency_id) {
-      self.displayError("Can not start", "Invalid agency_id")
+    if (!companyId) {
+      self.displayError('Can not start', 'Invalid companyId')
       return
     }
 
     self.name = name
-    self.user_id = user_id
-    self.agency_id = ""+agency_id+""
+    self.userId = userId
+    self.companyId = '' + companyId + ''
     self.commands = {}
 
     self.me = {
       name: self.name,
-      user_id: self.user_id,
-      agency_id: ""+self.agency_id,
-      channel: getPersonalRoomName(user_id, agency_id)
+      userId: self.userId,
+      companyId: '' + self.companyId,
+      channel: getPersonalRoomName(userId, companyId)
     }
     // console.log('XXCCCXXXCCCCC', "indexedDB" in window)
-    if ("indexedDB" in window) {
+    if ('indexedDB' in window) {
       self.store = new Store({
-        name: 'DB-Mediator-' + self.agency_id + '-' + self.user_id,
+        name: 'DB-Mediator-' + self.companyId + '-' + self.userId,
         swagger: self.collectionDefinitions
       })
 
@@ -179,40 +178,39 @@ class MessageMediatorClient extends EventSystem {
 
       self.store.on('store:error', eventObj => {
         // handle error
-        self.displayError("Local database", "Local database error ....", true)
+        self.displayError('Local database', 'Local database error ....', true)
       })
     }
 
     self.on('socket:connected', eventObj => {
       if (!self.started) {
-        
         self.triggerEvent('mediator:start', {
           mediator: self
         })
         self.started = true
       }
-      self.displaySuccess("Server communication", "Mediator client is started")
+      self.displaySuccess('Server communication', 'Mediator client is started')
     })
 
     // stack starts here
-    //self.askNotificationPermission((err, permission) =>
-    //{
-    //alert('passed permission')
+    // self.askNotificationPermission((err, permission) =>
+    // {
+    // alert('passed permission')
     if (self.store) {
       self.store.start()
     } else {
       self.connect()
       self.setupSocket()
     }
-    //})
+    // })
   }
 
-  setupSocket(callback) {
-    let self = this
+  setupSocket (callback) {
+    const self = this
     self.socket.on('dong', () => {
       console.warn('dong')
       self.latency = Date.now() - self.startPingTime
-      let data = 'Ping: ' + self.latency + 'ms'
+      const data = 'Ping: ' + self.latency + 'ms'
       console.warn(self.latency)
       self.triggerEvent('mediator:pong', {
         mediator: self,
@@ -222,37 +220,37 @@ class MessageMediatorClient extends EventSystem {
     })
     self.setupSendAPI()
     self.setupClient()
-    /*self.socket.on('connect_failed', () => {
+    /* self.socket.on('connect_failed', () => {
         self.socket.close()
         self.triggerEvent('mediator:close', {
             mediator: self
         })
-    })*/
+    }) */
 
     self.socket.on('connect', async () => {
-      
       console.warn('=====>>>> CONNECTED as ' + self.name + ' ' + self.socket.id)
       self.isConnected = true
       try {
         swal.close()
-        self.displaySuccess("Server connection", "Connected as " + self.name + " ....")
+        self.displaySuccess('Server connection', 'Connected as ' + self.name + ' ....')
       } catch (e) {
 
       }
       if (self.interval) clearInterval(self.interval)
       self.me.id = self.socket.id
-      /*self.socket.emit('authentication', { user_id: 2751, token: "abc" })
+      /* self.socket.emit('authentication', { userId: 2751, token: "abc" })
       self.socket.on('authenticated', function() {
 
-      })*/
+      }) */
       if (self.store) {
         console.warn('Trying to delivery not sent messages')
-        let notSentMessages = await self.store.models.SocketMessage.findAllByIndexValue('sent', 0)
+        const notSentMessages = await self.store.models.SocketMessage.findAllByIndexValue('sent', 0)
         console.warn(notSentMessages)
         notSentMessages.forEach(message => {
-          if (message.type === "talk:private:send") {
-            self.socket.emit(message.type, envelop)
-            self.triggerEvent(eventname, envelop)
+          if (message.type === 'talk:private:send') {
+            // TODO FIX TODO FIX TODO FIX
+            self.socket.emit(message.type, message)
+            self.triggerEvent(message.type, message)
           }
         })
       }
@@ -263,8 +261,8 @@ class MessageMediatorClient extends EventSystem {
 
     self.socket.on('disconnect', (data) => {
       console.warn('=====>>>> DISCONNECT ')
-      self.displayError("Server connection", "Server connection for " + self.name + " is now offline ....", true)
-      
+      self.displayError('Server connection', 'Server connection for ' + self.name + ' is now offline ....', true)
+
       self.socket.close()
       self.isConnected = false
 
@@ -274,17 +272,17 @@ class MessageMediatorClient extends EventSystem {
 
       self.interval = window.setInterval(() => {
         // swal.close()
-        self.displayWarning("Server connection", "Trying to reconnect as " + self.name + " ....", true)
-        //console.warn('trying to reconnect  as ' + self.name + ' ' + self.socket.id)
+        self.displayWarning('Server connection', 'Trying to reconnect as ' + self.name + ' ....', true)
+        // console.warn('trying to reconnect  as ' + self.name + ' ' + self.socket.id)
         if (self.isConnected) {
           clearInterval(self.interval)
           self.interval = null
           swal.close()
           return
         }
-        //self.connect()
+        // self.connect()
         self.socket.connect()
-        //swal.close()
+        // swal.close()
       }, 5000)
     })
 
@@ -295,8 +293,8 @@ class MessageMediatorClient extends EventSystem {
     })
 
     self.socket.on('user:join', (data) => {
-      let str = (data.name.length < 1 ? 'Anon' : data.name) + ' joined ' + (data.room ? ' into ' + data.room : '')
-      let str2 = '<b>' + (data.name.length < 1 ? 'Anon' : data.name) + '</b> joined ' + (data.room ? ' into ' + data.room : '')
+      const str = (data.name.length < 1 ? 'Anon' : data.name) + ' joined ' + (data.room ? ' into ' + data.room : '')
+      // const str2 = '<b>' + (data.name.length < 1 ? 'Anon' : data.name) + '</b> joined ' + (data.room ? ' into ' + data.room : '')
       self.triggerEvent('user:join', {
         mediator: self,
         data: data,
@@ -305,36 +303,34 @@ class MessageMediatorClient extends EventSystem {
 
       // request list of all users again
 
-      self.displaySuccess("Server communication", str)
+      self.displaySuccess('Server communication', str)
       try {
         self.send.request.serverClientList()
       } catch (error) {
-        console.warn('Mediator Send API is not ready yet!');
+        console.warn('Mediator Send API is not ready yet!')
       }
     })
 
-    //self.socket.on('agency:message:global:receive', (data) => {
+    // self.socket.on('agency:message:global:receive', (data) => {
     //  self.triggerEvent('agency:message:global:receive', data)
-    //})
-
-
+    // })
 
     self.socket.on('agency:message:global:receive', async (messageEvent) => {
-      let eventName = 'agency:message:global:receive'
-      let record = copy(messageEvent)
+      const eventName = 'agency:message:global:receive'
+      const record = copy(messageEvent)
       console.warn('XXXXXXXXX agency:message:global:receive', messageEvent)
       try {
-          if (self.store) {
-            let oldDocument = await self.store.models.SocketMessage.get(record.uuid)
-            if (!!!oldDocument) {
-              let document = await self.store.models.SocketMessage.add(record)
-            }
+        if (self.store) {
+          const oldDocument = await self.store.models.SocketMessage.get(record.uuid)
+          if (!oldDocument) {
+            /* const document = */ await self.store.models.SocketMessage.add(record)
           }
+        }
       } catch (e) {
-          console.error('error oldDocument')
-          console.error(e)
+        console.error('error oldDocument')
+        console.error(e)
       } finally {
-          self.triggerEvent(eventName, messageEvent)
+        self.triggerEvent(eventName, messageEvent)
       }
     })
 
@@ -355,7 +351,6 @@ class MessageMediatorClient extends EventSystem {
       })
     })
 
-
     self.socket.on('DemoUser', (messageEvent) => {
       // console.log('------------>>>>>>>', 'DemoUser')
       self.triggerEvent('DemoUser', messageEvent)
@@ -371,29 +366,26 @@ class MessageMediatorClient extends EventSystem {
       self.triggerEvent('FinanceCategory', messageEvent)
     })
 
-
     self.socket.on('channel:after:join:personal', async (messageEvent) => {
-      let evtName = 'channel:after:join:personal'
+      const evtName = 'channel:after:join:personal'
       // console.warn('>>>>>>>>>>>>> channel:after:join', messageEvent)
       if (self.store) {
         // console.warn('store is available')
         try {
-          let record = await self.store.models.SocketChannel.get(messageEvent.channel.uuid)
+          const record = await self.store.models.SocketChannel.get(messageEvent.channel.uuid)
           // console.log(record)
-          if (!!!record) {
+          if (!record) {
             console.warn('creating channel')
-            let document = await self.store.models.SocketChannel.add(messageEvent.channel)
+            /* const document = */ await self.store.models.SocketChannel.add(messageEvent.channel)
             // console.log(document)
           }
-        } 
-        catch (e) {
+        } catch (e) {
           console.error('ERROR channel:after:join:personal', e)
+        } finally {
+          console.warn('joining channel')
+          self.joinedChannels[messageEvent.channel.uuid] = true
+          self.triggerEvent(evtName, messageEvent)
         }
-        finally {
-              console.warn('joining channel')
-              self.joinedChannels[messageEvent.channel.uuid] = true
-              self.triggerEvent(evtName, messageEvent)
-            }
       } else {
         console.warn('store is NOT available. using memory. joining.')
         self.joinedChannels[messageEvent.channel.uuid] = true
@@ -401,14 +393,12 @@ class MessageMediatorClient extends EventSystem {
       }
     })
 
-
-
     self.socket.on('message:server:receipt', async (messageEvent) => {
-      let eventname = 'message:server:receipt',
-        message = copy(messageEvent),
-        record = {},
-        oldDocument,
-        newDocument;
+      const eventname = 'message:server:receipt'
+      const message = copy(messageEvent)
+      let record = {}
+      let oldDocument
+      // let newDocument
 
       if (self.store) {
         try {
@@ -418,14 +408,14 @@ class MessageMediatorClient extends EventSystem {
             record.sent = 1
             record.updatedAt = message.updatedAt
             try {
-              newDocument = await self.store.models.SocketMessage.put(record, message.uuid)
+              /* newDocument = */ await self.store.models.SocketMessage.put(record, message.uuid)
             } catch (e) {
               // console.log('error updating doc ', e)
             } finally {
               self.triggerEvent(eventname, message)
             }
           } else {
-            throw 'Document ' + message.uuid + ' not found. Can not locally set message as sent.'
+            throw Error('Document ' + message.uuid + ' not found. Can not locally set message as sent.')
           }
         } catch (e) {
           // console.log('error oldDocument')
@@ -437,12 +427,12 @@ class MessageMediatorClient extends EventSystem {
     })
 
     self.socket.on('message:acknowledgment:receive', async (messageEvent) => {
-      let eventname = 'message:acknowledgment:receive',
-        message = copy(messageEvent),
-        from = message.from,
-        read = false,
-        record = {},
-        oldDocument;
+      const eventname = 'message:acknowledgment:receive'
+      const message = copy(messageEvent)
+      const from = message.from
+      let read = false
+      let record = {}
+      let oldDocument
 
       if (self.store) {
         try {
@@ -453,7 +443,7 @@ class MessageMediatorClient extends EventSystem {
           if (oldDocument) {
             record = copy(oldDocument)
             record.read.forEach(client => {
-              if (client.user_id.toString() === from.user_id.toString()) {
+              if (client.userId.toString() === from.userId.toString()) {
                 read = true
               }
             })
@@ -463,7 +453,7 @@ class MessageMediatorClient extends EventSystem {
               record.sent = 1
               record.updatedAt = message.updatedAt
               try {
-                let document = await self.store.models.SocketMessage.put(record, message.uuid)
+                /* const document = */ await self.store.models.SocketMessage.put(record, message.uuid)
               } catch (e) {
                 console.error('error putting', e)
               } finally {
@@ -473,7 +463,7 @@ class MessageMediatorClient extends EventSystem {
               console.error('User ' + from.name + ' - ' + from.id + ' already had read' + message.uuid)
             }
           } else {
-            throw 'Document ' + message.uuid + ' not found. Can not set acknowledgment locally.'
+            console.error('Document ' + message.uuid + ' not found. Can not set acknowledgment locally.')
           }
         }
       } else {
@@ -482,35 +472,35 @@ class MessageMediatorClient extends EventSystem {
     })
 
     self.socket.on('webhook:income:messages', async (messageEvent) => {
-      let eventName = 'webhook:income:messages'
-      let record = copy(messageEvent)
+      const eventName = 'webhook:income:messages'
+      const record = copy(messageEvent)
 
       try {
-          if (self.store) {
-            let oldDocument = await self.store.models.SocketMessage.get(record.uuid)
-            if (!!!oldDocument) {
-              let document = await self.store.models.SocketMessage.add(record)
-            }
+        if (self.store) {
+          const oldDocument = await self.store.models.SocketMessage.get(record.uuid)
+          if (!oldDocument) {
+            /* const document = */ await self.store.models.SocketMessage.add(record)
           }
+        }
       } catch (e) {
-          console.error('error oldDocument')
-          console.error(e)
+        console.error('error oldDocument')
+        console.error(e)
       } finally {
-          self.sendAcknowledgment(record.uuid)
-          self.triggerEvent(eventName, messageEvent)
+        self.sendAcknowledgment(record.uuid)
+        self.triggerEvent(eventName, messageEvent)
       }
     })
 
     self.socket.on('data:sync', async (messageEvent) => {
-      let eventName = 'data:sync'
-      let record = copy(messageEvent)
+      const eventName = 'data:sync'
+      const record = copy(messageEvent)
       // console.log('XXXXXXXXX DATA SYNC')
       try {
         if (self.store) {
-          //let oldDocument = await self.store.models.SocketMessage.get(record.uuid)
-          //if (!!!oldDocument) {
+          // let oldDocument = await self.store.models.SocketMessage.get(record.uuid)
+          // if (!!!oldDocument) {
           //  let document = await self.store.models.SocketMessage.put(record)
-          //}
+          // }
         }
       } catch (e) {
         console.error('error oldDocument')
@@ -524,18 +514,18 @@ class MessageMediatorClient extends EventSystem {
     self.socket.on('talk:private:receive', async (messageEvent) => {
       if (!document.hasFocus()) {
         self.crossNotification(messageEvent.from.name, messageEvent.message, 'static/message.png')
-        let oldTitle = document.title
+        const oldTitle = document.title
         self.windowBlinkTimeoutId = setInterval(
-          self.blinkWindow(oldTitle, messageEvent.from.name + " sent a message"),
+          self.blinkWindow(oldTitle, messageEvent.from.name + ' sent a message'),
           500
-        ); //Initiate the Blink Call
+        ) // Initiate the Blink Call
       }
-      let record = copy(messageEvent)
+      const record = copy(messageEvent)
       try {
         if (self.store) {
-          let oldDocument = await self.store.models.SocketMessage.get(record.uuid)
+          const oldDocument = await self.store.models.SocketMessage.get(record.uuid)
           if (!oldDocument) {
-            let document = await self.store.models.SocketMessage.add(record)
+            /* const document = */ await self.store.models.SocketMessage.add(record)
           }
         }
       } catch (e) {
@@ -551,7 +541,7 @@ class MessageMediatorClient extends EventSystem {
       if (self.store) {
         console.warn('store is available')
         try {
-          let record = await self.store.models.SocketChannel.findOneByIndex('name', messageEvent.channel.name)
+          const record = await self.store.models.SocketChannel.findOneByIndex('name', messageEvent.channel.name)
           // console.log(record)
           if (record) {
             console.warn('channel already exist, joining')
@@ -560,7 +550,7 @@ class MessageMediatorClient extends EventSystem {
           } else {
             console.warn('creating channel')
             try {
-              let document = await self.store.models.SocketChannel.add(messageEvent.channel)
+              /* const document = */ await self.store.models.SocketChannel.add(messageEvent.channel)
               // console.log(document)
             } catch (e) {
               console.error('error new document')
@@ -582,10 +572,10 @@ class MessageMediatorClient extends EventSystem {
     })
   }
 
-  setupClient() {
+  setupClient () {
     // console.warn('MessageMediatorClient setupClient()');
-    let self = this,
-      commandSettings;
+    const self = this
+    let commandSettings
 
     commandSettings = {
       info: 'Check your latency.'
@@ -619,14 +609,14 @@ class MessageMediatorClient extends EventSystem {
   }
 
   displayError (title, text, doNotClose) {
-    let self = this
+    const self = this
     self.crossNotification(title, text, 'static/error.png')
     // console.warn(self.worker_registration)
-    return
-    swal.fire({
+    // return
+    /* swal.fire({
       title: title,
       text: text,
-      type: "error"
+      type: 'error'
     })
     if (doNotClose) {
 
@@ -634,110 +624,101 @@ class MessageMediatorClient extends EventSystem {
       setTimeout(() => {
         swal.close()
       }, 4000)
-    }
+    } */
   }
 
-  annoucementSender() {
-    let self = this
-    let html = ``
-    let announcement = window.prompt('Type the announcement', '')
-    if(announcement && announcement !== '') self.sendUniversal(announcement);
+  annoucementSender () {
+    const self = this
+    // const html = ''
+    const announcement = window.prompt('Type the announcement', '')
+    if (announcement && announcement !== '') self.sendUniversal(announcement)
   }
 
-  displayWarning(title, text, doNotClose) {
-    let self = this
+  displayWarning (title, text, doNotClose) {
+    const self = this
     self.crossNotification(title, text, 'static/warning.png')
     // console.warn(self.worker_registration)
-    return
+    /* return
     swal.fire(
-    {
-        title : title,
-        text : text,
-        type : "warning"
-    })
-    if (doNotClose)
-    {
+      {
+        title: title,
+        text: text,
+        type: 'warning'
+      })
+    if (doNotClose) {
 
-    }
-    else
-    {
-        setTimeout(() =>
-        {
-            swal.close()
-        }, 4000)
-    }
+    } else {
+      setTimeout(() => {
+        swal.close()
+      }, 4000)
+    } */
   }
 
-  displaySuccess(title, text, doNotClose) {
-    let self = this
+  displaySuccess (title, text, doNotClose) {
+    const self = this
     self.crossNotification(title, text, 'static/success.png')
     // console.warn(self.worker_registration)
-    return
+    /* return
     swal.fire(
-    {
-        title : title,
-        html : text,
-        type : "success"
-    })
-    if (doNotClose)
-    {
+      {
+        title: title,
+        html: text,
+        type: 'success'
+      })
+    if (doNotClose) {
 
-    }
-    else
-    {
-        setTimeout(() =>
-        {
-            swal.close()
-        }, 4000)
-    }
+    } else {
+      setTimeout(() => {
+        swal.close()
+      }, 4000)
+    } */
   }
 
-  sendAcknowledgment(uuid) {
-    let self = this,
-      eventname = 'message:acknowledgment:send',
-      utc_date = moment.utc() /*.format()*/ ,
-      dateNow = (utc_date).toISOString(),
-      envelop = {
-        from: self.me,
-        uuid: uuid,
-        message: 'message ' + uuid + ' read',
-        updatedAt: dateNow,
-      };
+  sendAcknowledgment (uuid) {
+    const self = this
+    const eventname = 'message:acknowledgment:send'
+    const utcDate = moment.utc() /* .format() */
+    const dateNow = (utcDate).toISOString()
+    const envelop = {
+      from: self.me,
+      uuid: uuid,
+      message: 'message ' + uuid + ' read',
+      updatedAt: dateNow
+    }
 
     self.socket.emit(eventname, envelop)
     self.triggerEvent(eventname, envelop)
   }
 
-  sendServerAnnouncement(message) {
-    let self = this,
-      eventname = 'server:announcement:send'
+  sendServerAnnouncement (message) {
+    const self = this
+    const eventname = 'server:announcement:send'
     message = sanitizeString(message)
-    let envelop = self.envelop.newCsCommand({
+    const envelop = self.envelop.newCsCommand({
       from: self.me,
       command: 'server:announcement:send',
-      message: message,
+      message: message
     })
     self.socket.emit(eventname, envelop)
     self.triggerEvent(eventname, envelop)
   }
 
-
-  async sendAgencyGlobalMessage(message) {
-    let self = this,
-      eventname = 'agency:message:global:send'
+  async sendAgencyGlobalMessage (message) {
+    const self = this
+    const eventname = 'agency:message:global:send'
     message = sanitizeString(message)
-    let envelop = self.envelop.newCsAgencyGlobalMessage({
+    const envelop = self.envelop.newCsAgencyGlobalMessage({
       from: self.me,
-      message: message,
+      message: message
     })
     self.triggerEvent('agency:message:global:before:send', envelop)
 
     try {
       if (self.store) {
-        //let oldDocument = await self.store.models.SocketMessage.get(envelop.uuid)
-        //if (!!!oldDocument) {
+        // let oldDocument = await self.store.models.SocketMessage.get(envelop.uuid)
+        // if (!!!oldDocument) {
         //  let document = await self.store.models.SocketMessage.add(envelop)
-        //}
+        // }
       }
     } catch (e) {
       console.error('error sendAgencyGlobalMessage')
@@ -748,11 +729,10 @@ class MessageMediatorClient extends EventSystem {
     }
   }
 
-
-  sendCommand(text) {
-    let self = this
+  sendCommand (text) {
+    const self = this
     if (text.indexOf('/') === 0) {
-      let args = text.substring(1).split(' ')
+      const args = text.substring(1).split(' ')
       let commandName = args[0]
       let announcementMessage = false
 
@@ -766,7 +746,7 @@ class MessageMediatorClient extends EventSystem {
         self.triggerEvent('command:execute', {
           mediator: self,
           data: commandName,
-          message: announcementMessage ? announcementMessage : commandName
+          message: announcementMessage || commandName
         })
       } else {
         self.triggerEvent('command:error', {
@@ -785,8 +765,8 @@ class MessageMediatorClient extends EventSystem {
   }
 
   // sends command or agency global message
-  async sendUniversal(text) {
-    let self = this
+  async sendUniversal (text) {
+    const self = this
     text = sanitizeString(text)
     if (text) {
       if (text.indexOf('/') === 0) {
@@ -797,16 +777,16 @@ class MessageMediatorClient extends EventSystem {
     }
   }
 
-  registerCommand(name, settings, callback) {
+  registerCommand (name, settings, callback) {
     this.commands[name] = {
       settings: settings,
       callback: callback
     }
   }
 
-  printHelp() {
-    let self = this
-    for (let cmd in self.commands) {
+  printHelp () {
+    const self = this
+    for (const cmd in self.commands) {
       if (self.commands.hasOwnProperty(cmd)) {
         self.triggerEvent('command:display:info', {
           mediator: self,
@@ -817,22 +797,22 @@ class MessageMediatorClient extends EventSystem {
     }
   }
 
-  checkLatency() {
+  checkLatency () {
     this.startPingTime = Date.now()
     this.socket.emit('ding')
   }
 
-  _emitSimple(eventname) {
+  _emitSimple (eventname) {
     this.socket.emit(eventname)
     this.triggerEvent(eventname)
   }
 
-  _emitText(eventname, text, meta) {
-    let self = this
-    let message = text || eventname.split(':').join(' ')
+  _emitText (eventname, text, meta) {
+    const self = this
+    const message = text || eventname.split(':').join(' ')
     meta = meta || false
 
-    let _data = {
+    const _data = {
       name: self.name,
       message: message
     }
@@ -840,34 +820,33 @@ class MessageMediatorClient extends EventSystem {
       _data.data = meta
     }
 
-    let eventObject = {
+    const eventObject = {
       name: self.name,
       message: message,
-      data: _data,
+      data: _data
     }
 
     self.socket.emit(eventname, eventObject)
     self.triggerEvent(eventname, eventObject)
   }
 
-  joinChannel(name, user = false) {
-
-    let self = this
-    if(!!!user) user = self.me
+  joinChannel (name, user = false) {
+    const self = this
+    if (!user) user = self.me
     // console.log('joinChannel', user)
-    let envelop = self.envelop.channelBeforeJoinMessage({
+    const envelop = self.envelop.channelBeforeJoinMessage({
       from: user,
       channel: name
     })
-    //envelop.sent = 1
+    // envelop.sent = 1
     // console.log('joinChannel', envelop)
     self.triggerEvent(envelop.type, envelop)
     self.socket.emit(envelop.type, envelop)
     return { ok: true }
   }
 
-  setupSendAPI() {
-    let self = this
+  setupSendAPI () {
+    const self = this
     this.send = {
       request: {
         // get all Client ids connected to server
@@ -876,7 +855,7 @@ class MessageMediatorClient extends EventSystem {
         },
         // get all Client ids connected to a channel
         inChannelClientList: (channel) => {},
-        messagesHistory: (sinceFromDate) => {},
+        messagesHistory: (sinceFromDate) => {}
       },
       create: {
         talk: {
@@ -908,18 +887,18 @@ class MessageMediatorClient extends EventSystem {
       message: {
         to: {
           user: async (c) => {
-            let envelop = self.envelop.newCsPrivateMessage({
+            const envelop = self.envelop.newCsPrivateMessage({
               from: self.me,
               to: c.to,
-              message: c.message,
+              message: c.message
             })
-            //envelop.sent = 1
+            // envelop.sent = 1
 
-            let record = copy(envelop)
+            const record = copy(envelop)
             // console.log( self.store.models )
             if (self.store) {
               try {
-                let document = await self.store.models.SocketMessage.add(record)
+                const document = await self.store.models.SocketMessage.add(record)
                 // console.log(document)
               } catch (e) {
                 // console.log('error new document')
@@ -928,7 +907,6 @@ class MessageMediatorClient extends EventSystem {
                 self.socket.emit(envelop.type, envelop)
                 self.triggerEvent(envelop.type, envelop)
               }
-
             } else {
               self.socket.emit(envelop.type, envelop)
               self.triggerEvent(envelop.type, envelop)
@@ -936,19 +914,19 @@ class MessageMediatorClient extends EventSystem {
             return envelop
           },
           // must be group participant
-          channel:  async (targetChannelName, message) => {
-            let envelop = self.envelop.newCsGroupMessage({
+          channel: async (targetChannelName, message) => {
+            const envelop = self.envelop.newCsGroupMessage({
               from: self.me,
               message: c.message,
               channel: targetChannelName
             })
-            //envelop.sent = 1
+            // envelop.sent = 1
 
-            let record = copy(envelop)
+            const record = copy(envelop)
             // console.log( record )
             if (self.store) {
               try {
-                let document = await self.store.models.SocketMessage.add(record)
+                const document = await self.store.models.SocketMessage.add(record)
                 // console.log(document)
               } catch (e) {
                 // console.log('error new document')
@@ -957,7 +935,6 @@ class MessageMediatorClient extends EventSystem {
                 self.socket.emit(envelop.type, envelop)
                 self.triggerEvent(envelop.type, envelop)
               }
-
             } else {
               self.socket.emit(envelop.type, envelop)
               self.triggerEvent(envelop.type, envelop)
@@ -969,13 +946,13 @@ class MessageMediatorClient extends EventSystem {
         channel: (targetChannelName) => {
 
         }
-      },
+      }
     }
   }
 
-  getBrowserInfo(callback) {
+  getBrowserInfo (callback) {
     navigator.geolocation.getCurrentPosition(function (position) {
-      let info = {
+      const info = {
         timezone: (new Date()).getTimezoneOffset() / 60,
         pageon: window.location.pathname,
         referrer: document.referrer,
@@ -990,7 +967,7 @@ class MessageMediatorClient extends EventSystem {
         javaEnabled: navigator.javaEnabled(),
         dataCookiesEnabled: navigator.cookieEnabled,
         dataCookies1: document.cookie,
-        dataCookies2: decodeURIComponent(document.cookie.split(";")),
+        dataCookies2: decodeURIComponent(document.cookie.split(';')),
         dataStorage: localStorage,
         sizeScreenW: screen.width,
         sizeScreenH: screen.height,
@@ -1009,26 +986,26 @@ class MessageMediatorClient extends EventSystem {
         altitudeAccuracy: position.coords.altitudeAccuracy,
         heading: position.coords.heading,
         speed: position.coords.speed,
-        timestamp: position.timestamp,
+        timestamp: position.timestamp
       }
       if (callback) callback(info)
     })
   }
 
   // function for creating the notification
-  askNotificationPermission(callback) {
-    let self = this
-    let checKingMessage = (granted) => {
+  askNotificationPermission (callback) {
+    const self = this
+    const checKingMessage = (granted) => {
       self.crossNotification('Notifications permission', (granted ? 'Noitification permission is ok' : 'checking notification permission'), 'static/error.png')
     }
-    if (!"Notification" in window) {
+    if (!'Notification' in window) {
       // console.log("This browser does not support notifications.")
-      if (callback) callback("This browser does not support notifications.", null)
+      if (callback) callback('This browser does not support notifications.', null)
       return
     }
 
-    if ("Notification" in window) {
-      if (window.Notification.permission === "granted") {
+    if ('Notification' in window) {
+      if (window.Notification.permission === 'granted') {
         // If it's okay let's create a notification
         checKingMessage()
         if (callback) callback(null, true)
@@ -1037,59 +1014,57 @@ class MessageMediatorClient extends EventSystem {
           if (!('permission' in window.Notification)) {
             window.Notification.permission = permission
           }
-          if (permission === "granted") {
+          if (permission === 'granted') {
             checKingMessage(true)
           }
           if (callback) callback(null, permission)
         })
       } else {
-        if (callback) callback("There is some bloking on notifications", null)
+        if (callback) callback('There is some bloking on notifications', null)
       }
     } else {
-      if (callback) callback("This browser does not support notifications.", null)
+      if (callback) callback('This browser does not support notifications.', null)
     }
   }
 
-  crossNotification(title, body, icon) {
+  crossNotification (title, body, icon) {
     // console.warn('crossNotification crossNotification crossNotification crossNotification')
-    let self = this
+    const self = this
     // console.log('"Notification" in window', ("Notification" in window))
     // console.log("'serviceWorker' in navigator", ('serviceWorker' in navigator))
-    if ('serviceWorkers' in navigator)
-    {
+    if ('serviceWorkers' in navigator) {
       // Android chrome fallBack
-      //ServiceWorkerRegistration.showNotification(body)
+      // ServiceWorkerRegistration.showNotification(body)
       if (self.worker_registration) {
         self.worker_registration.showNotification(body)
       } else {
-       
         if ('serviceWorker' in navigator) {
           // console.warn("'serviceWorker' in navigator", ('serviceWorker' in navigator))
-          //navigator.serviceWorker.register
-          navigator.serviceWorker.register('/static/sw.js', {scope: '/static/'})
-          .then(function(registration) {
+          // navigator.serviceWorker.register
+          navigator.serviceWorker.register('/static/sw.js', { scope: '/static/' })
+            .then(function (registration) {
             // console.log(registration)
-            if (registration.installing) {
-              console.warn('Service worker installing');
-            } else if (registration.waiting) {
-              console.warn('Service worker installed');
-            } else if (registration.active) {
-              console.warn('Service worker active');
-            }
-            console.warn('Registration succeeded. Scope is ' + registration.scope);
-            self.worker_registration = registration
-            self.worker_registration.showNotification(title, {
-                  body: body,
-                  icon: icon,
-                  //vibrate : [200, 100, 200, 100, 200, 100, 200],
-                  tag: title
-            })
-          }).catch(function(error) {
+              if (registration.installing) {
+                console.warn('Service worker installing')
+              } else if (registration.waiting) {
+                console.warn('Service worker installed')
+              } else if (registration.active) {
+                console.warn('Service worker active')
+              }
+              console.warn('Registration succeeded. Scope is ' + registration.scope)
+              self.worker_registration = registration
+              self.worker_registration.showNotification(title, {
+                body: body,
+                icon: icon,
+                // vibrate : [200, 100, 200, 100, 200, 100, 200],
+                tag: title
+              })
+            }).catch(function (error) {
             // registration failed
-            console.warn('Registration failed with ' + error);
-          });
+              console.warn('Registration failed with ' + error)
+            })
         }
-        /*else {
+        /* else {
           // TODO
           try {
             ServiceWorkerRegistration.showNotification(title, {
@@ -1101,55 +1076,50 @@ class MessageMediatorClient extends EventSystem {
           } catch (e) {
             // console.log(e)
           }
-        }*/
+        } */
       }
-    }
-    else
-    {
-      if ("Notification" in window) {
+    } else {
+      if ('Notification' in window) {
         // console.log(title, body)
-        if (Notification.permission === 'granted')
-        {
-          let not = new window.Notification(title, {
+        if (Notification.permission === 'granted') {
+          const not = new window.Notification(title, {
             body: body,
             icon: icon
           })
         }
-        
-        //if ("vibrate" in window.navigator) window.navigator.vibrate(500)
+
+        // if ("vibrate" in window.navigator) window.navigator.vibrate(500)
       }
     }
   }
 
-  blinkWindow(oldTitle, msg) {
-    let self = this;
+  blinkWindow (oldTitle, msg) {
+    const self = this
 
-    document.title = document.title == oldTitle ? msg : oldTitle; //Modify Title in case a popup
+    document.title = document.title == oldTitle ? msg : oldTitle // Modify Title in case a popup
 
-    //document.focus()
+    // document.focus()
 
-    if (document.hasFocus()) //Stop blinking and restore the Application Title
+    if (document.hasFocus()) // Stop blinking and restore the Application Title
     {
-      document.title = oldTitle;
-      clearInterval(self.windowBlinkTimeoutId);
+      document.title = oldTitle
+      clearInterval(self.windowBlinkTimeoutId)
     }
   }
 
-  getId() {
+  getId () {
     return this.socket.id
   }
 }
-
 
 export default MessageMediatorClient
 
 window.MessageMediatorClient = MessageMediatorClient
 global.MessageMediatorClient = MessageMediatorClient
 
-
-//let myWorker = new Worker("sw.js")
-//myWorker.postMessage('hello from main')
+// let myWorker = new Worker("sw.js")
+// myWorker.postMessage('hello from main')
 // console.log(myWorker)
 // console.log(navigator)
 
-//navigator.serviceWorker.register('sw.js')
+// navigator.serviceWorker.register('sw.js')
