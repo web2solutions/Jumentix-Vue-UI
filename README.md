@@ -4,6 +4,8 @@
 
 "Runtime" generated VUE User Interfaces by leveraging extended Swagger OpenAPI specification as declarative metadata.
 
+[![Known Vulnerabilities](https://snyk.io/test/github/web2solutions/Jumentix-Vue-UI/badge.svg)](https://snyk.io/test/github/web2solutions/Jumentix-Vue-UI)
+
 
 ## Problems
 
