@@ -55,7 +55,7 @@
     "vue-fullcalendar": "^1.0.9",
     "vue-perfect-scrollbar": "^0.1.0",
     "vue-quill-editor": "^3.0.6",
-    "vue-resize": "^0.4.4",
+    "vue-resize": "^0.5.0",
     "vue-router": "^3.0.1",
     "vue-smooth-dnd": "^0.8.1",
     "vue-stripe-elements-plus": "^0.3.2",
