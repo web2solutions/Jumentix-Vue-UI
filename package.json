@@ -48,7 +48,6 @@
     "nprogress": "^0.2.0",
     "quill": "^1.3.6",
     "sortablejs": "^1.8.4",
-    "translate": "^1.1.2",
     "v-currency-field": "^1.0.6",
     "vee-validate": "^2.0.9",
     "vue": "^2.6.9",
