@@ -3209,6 +3209,26 @@ export function setGridHeaders (properties = {}, dataAdapters = {}) {
       } else if (type === 'integer') {
         // by default all string field is a text field
         header.columntype = 'numberinput'
+       // header.cellsformat = 'c2'
+        header.editable = true
+      } else if (type === 'currency') {
+        // by default all string field is a text field
+        header.columntype = 'numberinput'
+        header.cellsformat = 'c2'
+        // header.cellsformat = 'MM-dd-yyyy'
+        header.editable = false
+      } else if (type === 'number') {
+        // by default all string field is a text field
+        console.error(`==========> NUMBER ${text} ${xuiType} - ${format} - ${mask}`)
+        header.columntype = 'numberinput'
+        if(format === 'float')
+        {
+          header.cellsformat = 'f3'
+        }
+        if(xuiType === 'currency')
+        {
+          header.cellsformat = 'c2'
+        }
         header.editable = true
       } else if (type === 'array') {
         // by default all string field is a text field
@@ -3439,6 +3459,18 @@ export async function setField ({ entity, name, property, swagger, mode = 'edit'
     })
   } else if (xuiType === 'integer') {
     field = await buildIntegerField({
+      entity,
+      name,
+      property,
+      swagger,
+      mode,
+      bus,
+      definition,
+      dataAdapters,
+      width
+    })
+  } else if (xuiType === 'currency') {
+    field = await buildCurrencyField({
       entity,
       name,
       property,
@@ -3777,6 +3809,59 @@ export async function buildIntegerField ({ entity, name, property, swagger, mode
          decimalDigits: 0,
          // symbolPosition: 'right', 
          // symbol: '%', 
+         spinButtons: true
+      }
+      component.jqxNumberInput(iptConf);
+    }
+    // placeHolder: 'xxxxxx',
+    // component: 'jqxInput',
+  }
+  return field
+}
+
+
+export async function buildCurrencyField ({ entity, name, property, swagger, mode = 'edit', definition, width }) {
+  const label = getFormLabel(property)
+  let info = property.description
+  const required = getFormRequired(definition, name)
+  const foreignCollection = getForeignCollection(property)
+  const isMultiple = isFormMultiple(property)
+  let isEditable = getFormEditable(property)
+  const formLimit = getFormSelectionLimit(property)
+  const limitMessage = formLimit > 0 ? `You can select up to ${formLimit} items.` : formLimit < 0 ? 'You can\'t select any item.' : 'You can select unlimited items.'
+  width = width ||  getDefaultFormWidth()
+  if (required) info = `${info}. It is a mandatory field.`
+  if (!required) info = `${info}. It is not a mandatory field.`
+  if (isMultiple) info = `${info}. ${limitMessage}`
+  if (mode === 'create') isEditable = true
+  if (mode === 'search') isEditable = true
+  if (mode === 'view') isEditable = false
+  if (mode === 'view') info = ''
+  const field = {
+    bind: name,
+    id: name,
+    name: name,
+    type: 'number',
+    componentUsed: 'currency',
+    label,
+    required,
+    labelPosition: 'top',
+    // labelWidth: '30%',
+    align: 'left',
+    // labelWidth: '80px',
+    width,
+    info,
+    infoPosition: 'right',
+    foreignCollection,
+    disabled: !isEditable,
+
+    init: async (component) => {
+      const iptConf = {
+        width,
+        disabled: !isEditable,
+         decimalDigits: 2,
+         // symbolPosition: 'right', 
+         symbol: '$', 
          spinButtons: true
       }
       component.jqxNumberInput(iptConf);
@@ -4962,7 +5047,7 @@ export function getFormHash ({ form, definition, mode = 'create' }) {
         if (!is.undefined(jqField.jqxPasswordInput('val'))) { 
           hash[name] = jqField.jqxPasswordInput('val')
         }
-      } else if (xuiType === 'integer') {
+      } else if (xuiType === 'integer' || xuiType === 'currency' || xuiType === 'number') {
         if (!is.undefined(jqField.jqxNumberInput('val'))) { hash[name] = jqField.jqxNumberInput('val') }
       } else if (xuiType === 'editor') {
         jqField = $(`#xeditor_${name}`)
@@ -4982,8 +5067,10 @@ export function getFormHash ({ form, definition, mode = 'create' }) {
           hash[name] = (new Date(jqField.jqxDateTimeInput('val'))).toISOString()
         }
       } else if (xuiType === 'combobox' || xuiType === 'combo') {
+        alert();
         const selectedIndex = jqField.jqxComboBox('selectedIndex')
         const selectedItem = jqField.jqxComboBox('getItem', selectedIndex)
+        console.error(`${selectedIndex} `, selectedItem)
         if (selectedItem) {
           const selectedValue = selectedItem.value
           if (!is.undefined(selectedValue)) hash[name] = selectedValue
