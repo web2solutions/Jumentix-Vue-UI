@@ -41,6 +41,13 @@ const Menu = [{
     component: 'Family',
     roles: []
   }, */{
+      name: 'Consumidor',
+      icon: 'widgets',
+      badge: 'new',
+      title: 'Consumidor',
+      component: 'Consumidor',
+      roles: ['admin', 'agency']
+    }, {
       name: 'Human',
       icon: 'widgets',
       badge: 'new',
@@ -239,6 +246,13 @@ const Menu = [{
 }, {
   header: 'Swagger based UI Elements',
   roles: ['admin']
+}, {
+  name: 'Consumidor',
+  icon: 'widgets',
+  badge: 'new',
+  title: 'Consumidores',
+  component: 'Consumidor',
+  roles: ['admin', 'agency']
 }, {
   name: 'Human',
   icon: 'widgets',

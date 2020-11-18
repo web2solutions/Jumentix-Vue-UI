@@ -99,7 +99,6 @@ export default [
       '@/pages/Dashboard.vue'
     )
   },
-  
 
   // ===>
   {
@@ -179,6 +178,84 @@ export default [
     )
   },
 
+
+  // ===>
+  {
+    path: '/Consumidor',
+    meta: {
+      breadcrumb: false,
+      title: 'Consumidores',
+      entity: 'Consumidor', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'Consumidor',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Consumidor/listing/View.vue'
+    )
+  }, {
+    path: '/Consumidor/edit/:id',
+    meta: {
+      breadcrumb: false,
+      title: 'Edit Consumidor',
+      entity: 'Consumidor', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'EditConsumidor',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Consumidor/formEdit/Index.vue'
+    )
+  }, {
+    path: '/Consumidor/new',
+    meta: {
+      breadcrumb: false,
+      title: 'New Consumidor',
+      entity: 'Consumidor', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'CreateConsumidor',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Consumidor/formCreate/Index.vue'
+    )
+  }, {
+    path: '/Consumidor/edit/:id/schema/:schemaName/:mode',
+    meta: {
+      breadcrumb: false,
+      title: 'Add Sub Document',
+      entity: 'Consumidor', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'AddConsumidorSubDocument',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Consumidor/formSchema/Index.vue'
+    )
+  }, {
+    path: '/Consumidor/edit/:id/schema/:schemaName/:mode/:schemaid',
+    meta: {
+      breadcrumb: false,
+      title: 'Edit Sub Document',
+      entity: 'Consumidor', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'EditConsumidorSubDocument',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Consumidor/formSchema/Index.vue'
+    )
+  },
 
   // ===>
   {
