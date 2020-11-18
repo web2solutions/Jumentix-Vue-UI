@@ -254,6 +254,20 @@ const Menu = [{
   component: 'Consumidor',
   roles: ['admin', 'agency']
 }, {
+  name: 'Produto',
+  icon: 'widgets',
+  badge: 'new',
+  title: 'Produtos',
+  component: 'Produto',
+  roles: ['admin', 'agency']
+}, {
+  name: 'Fornecedor',
+  icon: 'widgets',
+  badge: 'new',
+  title: 'Fornecedores',
+  component: 'Fornecedor',
+  roles: ['admin', 'agency']
+}, {
   name: 'Human',
   icon: 'widgets',
   badge: 'new',
