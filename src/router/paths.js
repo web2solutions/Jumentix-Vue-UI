@@ -261,7 +261,7 @@ export default [
     path: '/Produto',
     meta: {
       breadcrumb: false,
-      title: 'Produtoes',
+      title: 'Produtos',
       entity: 'Produto', // swagger gen
       itemKey: '_id', // swagger gen
       itemLabel: 'nome' // swagger gen
