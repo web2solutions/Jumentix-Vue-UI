@@ -165,9 +165,6 @@ const vm = {
       next()
     }
   },
-  beforeDestroy () {
-    this.destroyInterface()
-  },
   beforeRouteLeave (to, from, next) {
     if (this.isDirty) {
       Swal.fire({
@@ -181,7 +178,7 @@ const vm = {
         calcelButtonText: `Yes, proceed to ${this.entity} listing`
       }).then(async (result) => {
         if (result.value) {
-          // this.destroyInterface()
+          this.destroyInterface()
           next()
         }
       })

@@ -243,8 +243,13 @@ const vm = {
       next()
     }
   },
-  beforeDestroy () {
+  beforeRouteLeave (to, from, next) {
     this.destroyInterface()
+    // grid
+    // formCreate
+    // formSearch
+    // tab
+    next()
   },
   watch: {
     documents: {
