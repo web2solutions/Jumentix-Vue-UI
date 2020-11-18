@@ -178,7 +178,6 @@ export default [
     )
   },
 
-
   // ===>
   {
     path: '/Consumidor',
@@ -254,6 +253,162 @@ export default [
       /* webpackChunkName: "routes" */
       /* webpackMode: "lazy-once" */
       '@/pages/Consumidor/formSchema/Index.vue'
+    )
+  },
+
+  // ===>
+  {
+    path: '/Produto',
+    meta: {
+      breadcrumb: false,
+      title: 'Produtoes',
+      entity: 'Produto', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'Produto',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Produto/listing/View.vue'
+    )
+  }, {
+    path: '/Produto/edit/:id',
+    meta: {
+      breadcrumb: false,
+      title: 'Edit Produto',
+      entity: 'Produto', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'EditProduto',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Produto/formEdit/Index.vue'
+    )
+  }, {
+    path: '/Produto/new',
+    meta: {
+      breadcrumb: false,
+      title: 'New Produto',
+      entity: 'Produto', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'CreateProduto',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Produto/formCreate/Index.vue'
+    )
+  }, {
+    path: '/Produto/edit/:id/schema/:schemaName/:mode',
+    meta: {
+      breadcrumb: false,
+      title: 'Add Sub Document',
+      entity: 'Produto', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'AddProdutoSubDocument',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Produto/formSchema/Index.vue'
+    )
+  }, {
+    path: '/Produto/edit/:id/schema/:schemaName/:mode/:schemaid',
+    meta: {
+      breadcrumb: false,
+      title: 'Edit Sub Document',
+      entity: 'Produto', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'EditProdutoSubDocument',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Produto/formSchema/Index.vue'
+    )
+  },
+
+  // ===>
+  {
+    path: '/Fornecedor',
+    meta: {
+      breadcrumb: false,
+      title: 'Fornecedores',
+      entity: 'Fornecedor', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'Fornecedor',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Fornecedor/listing/View.vue'
+    )
+  }, {
+    path: '/Fornecedor/edit/:id',
+    meta: {
+      breadcrumb: false,
+      title: 'Edit Fornecedor',
+      entity: 'Fornecedor', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'EditFornecedor',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Fornecedor/formEdit/Index.vue'
+    )
+  }, {
+    path: '/Fornecedor/new',
+    meta: {
+      breadcrumb: false,
+      title: 'New Fornecedor',
+      entity: 'Fornecedor', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'CreateFornecedor',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Fornecedor/formCreate/Index.vue'
+    )
+  }, {
+    path: '/Fornecedor/edit/:id/schema/:schemaName/:mode',
+    meta: {
+      breadcrumb: false,
+      title: 'Add Sub Document',
+      entity: 'Fornecedor', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'AddFornecedorSubDocument',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Fornecedor/formSchema/Index.vue'
+    )
+  }, {
+    path: '/Fornecedor/edit/:id/schema/:schemaName/:mode/:schemaid',
+    meta: {
+      breadcrumb: false,
+      title: 'Edit Sub Document',
+      entity: 'Fornecedor', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'nome' // swagger gen
+    },
+    name: 'EditFornecedorSubDocument',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Fornecedor/formSchema/Index.vue'
     )
   },
 
