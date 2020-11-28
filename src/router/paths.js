@@ -55,8 +55,22 @@ export default [
       /* webpackMode: "lazy-once" */
       '@/pages/MAPForms/Index.vue'
     )
+  }, {
+    path: '/EntityBuilder',
+    meta: {
+      breadcrumb: false,
+      title: 'Entity Builder',
+      entity: 'EntityBuilder', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'name' // swagger gen
+    },
+    name: 'EntityBuilder',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/EntityBuilder/index.vue'
+    )
   },
-  
   {
     path: '/login',
     meta: {
