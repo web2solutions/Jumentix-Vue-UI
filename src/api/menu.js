@@ -180,13 +180,13 @@ const Menu = [{
   icon: 'fas fa-layer-group',
   name: 'Group',
   roles: ['admin', 'agency', 'manager']
-}, */ {
+},  {
   title: 'Surveys',
   // group: 'apps',
   icon: 'poll',
   name: 'Survey',
   roles: ['admin', 'agency', 'manager']
-}, {
+}, */{
   title: 'Messages',
   // group: 'apps',
   name: 'Mail',
@@ -287,6 +287,13 @@ const Menu = [{
   icon: 'chat_bubble',
   name: 'Chat',
   roles: []
+}, {
+  name: 'EntityBuilder',
+  icon: 'widgets',
+  badge: 'new',
+  title: 'Entity Builder',
+  component: 'EntityBuilder',
+  roles: ['admin', 'agency']
 }, {
   title: 'Logout',
   // group: 'apps',
