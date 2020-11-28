@@ -5615,6 +5615,77 @@ export function speak(text) {
   }, 200)
 }
 
+
+export const getEntities = (definitions = {}) => {
+  const _definitions = {...definitions}
+  const entities = []
+  for (const name in _definitions) {
+    if (_definitions.hasOwnProperty(name)) {
+      if (name.indexOf('_') > -1) { 
+        continue;
+      }
+      entities.push({
+        name,
+        spec: _definitions[name]
+      })
+    }
+  }
+  return entities
+}
+export function getIconClass (property, isOid) {
+    let file = 'text_field'
+
+    const type = property.type
+    const xuiType = getFormType(property)
+    const mask = getFormMask(property)
+    const format = getFormat(property)
+    const isUploader = getFormIsUploader(property)
+    const collectionSetings = getFieldCollectionSettings(property)
+
+
+    if (isUploader) {
+      file = 'mupload_field'
+    }
+    if (format === 'date' || format === 'date-time') {
+      file = 'date_field'
+    }
+
+    if (format === 'base64') {
+      file = 'supload_field'
+    }
+
+    if (type === 'boolean') {
+      file = 'boolean_field'
+    }
+
+    if (type === 'integer') {
+      file = 'integer_field'
+    }
+
+    if (collectionSetings) {
+      file = 'foreign_key'
+    }
+
+  if (isOid) { 
+    file = 'oid_field'
+  }
+    return file
+  }
+
+export const getEntityProperties = (properties = {}) => {
+  const _properties = {...properties}
+  const props = []
+  for (const name in _properties) {
+    if (_properties.hasOwnProperty(name)) {
+      props.push({
+        name,
+        spec: _properties[name]
+      })
+    }
+  }
+  return props
+}
+
 const countryCodes = [{
     "Iso2": "BD",
     "Name": "Bangladesh",
