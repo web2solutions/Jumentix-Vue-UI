@@ -904,6 +904,16 @@ export function isSchema (property = {}) {
   }
   return false
 }
+
+export function isChild (property) {
+  if (!property) return false
+  if (property['x-child']) {
+    return true || false
+  }
+  return false
+}
+
+
 export function setFieldCollectionSettings (settings, property) {
   // // // console.log(property['x-ui'].form);
   // component.collection_links.push(settings);
