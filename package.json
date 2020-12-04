@@ -41,6 +41,7 @@
     "jquery": "^3.3.1",
     "jqwidgets-framework": "^9.1.6",
     "js-sha512": "^0.8.0",
+    "json2yaml": "^1.1.0",
     "jszip": "^3.4.0",
     "less": "^3.9.0",
     "lodash.truncate": "^4.4.2",
