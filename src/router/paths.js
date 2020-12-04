@@ -194,6 +194,84 @@ export default [
 
   // ===>
   {
+    path: '/Appointment',
+    meta: {
+      breadcrumb: false,
+      title: 'Appointments',
+      entity: 'Appointment', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'name' // swagger gen
+    },
+    name: 'Appointment',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Appointment/listing/View.vue'
+    )
+  }, {
+    path: '/Appointment/edit/:id',
+    meta: {
+      breadcrumb: false,
+      title: 'Edit Appointment',
+      entity: 'Appointment', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'name' // swagger gen
+    },
+    name: 'EditAppointment',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Appointment/formEdit/Index.vue'
+    )
+  }, {
+    path: '/Appointment/new',
+    meta: {
+      breadcrumb: false,
+      title: 'New Appointment',
+      entity: 'Appointment', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'name' // swagger gen
+    },
+    name: 'CreateAppointment',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Appointment/formCreate/Index.vue'
+    )
+  }, {
+    path: '/Appointment/edit/:id/schema/:schemaName/:mode',
+    meta: {
+      breadcrumb: false,
+      title: 'Add Sub Document',
+      entity: 'Appointment', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'name' // swagger gen
+    },
+    name: 'AddAppointmentSubDocument',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Appointment/formSchema/Index.vue'
+    )
+  }, {
+    path: '/Appointment/edit/:id/schema/:schemaName/:mode/:schemaid',
+    meta: {
+      breadcrumb: false,
+      title: 'Edit Sub Document',
+      entity: 'Appointment', // swagger gen
+      itemKey: '_id', // swagger gen
+      itemLabel: 'name' // swagger gen
+    },
+    name: 'EditAppointmentSubDocument',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      '@/pages/Appointment/formSchema/Index.vue'
+    )
+  },
+
+  // ===>
+  {
     path: '/Consumidor',
     meta: {
       breadcrumb: false,
