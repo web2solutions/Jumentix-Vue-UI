@@ -247,6 +247,13 @@ const Menu = [{
   header: 'Swagger based UI Elements',
   roles: ['admin']
 }, {
+  name: 'Appointment',
+  icon: 'widgets',
+  badge: 'new',
+  title: 'Appointments',
+  component: 'Appointment',
+  roles: ['admin', 'agency']
+}, {
   name: 'Consumidor',
   icon: 'widgets',
   badge: 'new',
