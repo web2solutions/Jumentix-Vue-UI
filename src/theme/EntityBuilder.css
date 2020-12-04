@@ -34,6 +34,25 @@
     background-image: url(https://cdn2.iconfinder.com/data/icons/object-other/64/tank-water-drop-16.png);
 }
 
+.entity_icon{
+    background-image: url(https://cdn4.iconfinder.com/data/icons/ios-web-user-interface-multi-circle-flat-vol-2/512/Arrow_document_data_file_folder_send-16.png);
+}
+
+.schema_icon{
+    background-image: url(https://cdn1.iconfinder.com/data/icons/computer-hardware-cute-style-vol-1/52/computercable__cable__data__wire__datacable__usb__transfer-16.png);
+}
+
+.dhx_cell_cont_layout{
+    overflow: auto;
+}
+
+ #yaml, #selected_yaml { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
 
 
 
