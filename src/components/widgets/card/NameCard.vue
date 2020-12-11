@@ -1,7 +1,7 @@
 <template>
 <div class="name-card" style="cursor: pointer;" @click="goToUrl">
   <v-card :color="$vuetify.options.extra.sideNav" ref="card" :dark="dark" :img="cardBgImage">
-    <v-card-media v-if="showTopNav">
+    <v-img v-if="showTopNav">
       <v-layout row justify-space-between class="ma-0">
         <v-flex xs2>
           <v-icon color="pink">favorite</v-icon>
@@ -10,7 +10,7 @@
           <v-icon>more_vert</v-icon>
         </v-flex>
       </v-layout>
-    </v-card-media>    
+    </v-img>    
     <v-card-text>
       <div class="layout ma-0 align-left" :class="computeCardLayout">
         <v-avatar :size="computeAvatarSize" color="primary">

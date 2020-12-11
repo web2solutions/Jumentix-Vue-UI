@@ -40,8 +40,8 @@ export default (function(global) {
     // host = 'http://' + window.location.hostname + (window.location.port === '' ? '' : ':' + window.location.port),
     // api_URL = host + '/api/',
 
-    host = 'http://a243.test.myadoptionportal.com/',
-    api_URL = 'http://a243.test.myadoptionportal.com/api/',
+    host = 'http://jumentixapi.webhop.me/',
+    api_URL = 'http://jumentixapi.webhop.me/api/',
 
     env = 'test',
     version = 'v1',
@@ -66,6 +66,10 @@ export default (function(global) {
         env = 'test';
         _env = 'test';
       }
+      else if (window.location.hostname.indexOf('jumentix.ddns.net') > -1) {
+        env = 'test';
+        _env = 'test';
+      }
       // console.log('xxxxxxxxxxxx env', env )
       // console.log('xxxxxxxxxxxx _env', _env )
       if (_env === 'testMac') {
@@ -86,9 +90,9 @@ export default (function(global) {
         api_URL = 'http://localhost:3001/api/'
         host = 'http://localhost:3001/'
       }
-      // console.log(host)
-      // console.log(host)
-      // console.log(api_URL)
+      console.log(host)
+      console.log(host)
+      console.log(api_URL)
     },
     handleErrorResponse = (xhr, ajaxOptions, thrownError) => {
       if (xhr.responseJSON) {

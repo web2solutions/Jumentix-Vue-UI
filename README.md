@@ -211,7 +211,7 @@ npm run dev
 
 5. Do login.
 
-User: agency@agency.com
+User: admin@admin.com
 Password: 123
 
 It is going to ask you to change your password.

@@ -99,14 +99,14 @@ class MessageMediatorClient extends EventSystem {
     const userId = c.userId
     const companyId = c.companyId
 
-    let host = c.host ? c.host : (window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'http://a243.test.myadoptionportal.com/')
+    let host = c.host ? c.host : (window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'http://jumentixapi.webhop.me/')
 
     if (window.location.hostname.indexOf('-prod') > -1) {
-      host = 'https://a243-prod.myadoptionportal.com/'
+      host = 'https://jumentixapi.webhop.me/'
     }
 
     if (window.location.hostname.indexOf('map-ui-test') > -1) {
-      host = 'https://map-api-test.myadoptionportal.com/'
+      host = 'https://jumentixapi.webhop.me/'
     }
 
     if (self.socket) {

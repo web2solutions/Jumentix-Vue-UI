@@ -5077,7 +5077,7 @@ export function getFormHash ({ form, definition, mode = 'create' }) {
           hash[name] = (new Date(jqField.jqxDateTimeInput('val'))).toISOString()
         }
       } else if (xuiType === 'combobox' || xuiType === 'combo') {
-        alert();
+        
         const selectedIndex = jqField.jqxComboBox('selectedIndex')
         const selectedItem = jqField.jqxComboBox('getItem', selectedIndex)
         console.error(`${selectedIndex} `, selectedItem)
@@ -5632,6 +5632,9 @@ export const getEntities = (definitions = {}) => {
   for (const name in _definitions) {
     if (_definitions.hasOwnProperty(name)) {
       if (name.indexOf('_') > -1) { 
+        continue;
+      }
+      if (isChild(_definitions[name])) { 
         continue;
       }
       entities.push({

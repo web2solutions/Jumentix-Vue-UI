@@ -53,7 +53,10 @@ export default {
     'taskProgressSchemaReview',
     'taskSurveyAnswerSchema',
     'taskTemplateSchema',
-    'surveyAnswerSchema'
+    'surveyAnswerSchema',
+    'appointmentServiceInvoiceItem',
+    'appointmentSession',
+    'invoiceAdditionalCost'
   ],
   prefix_sufix: [
     '_create',

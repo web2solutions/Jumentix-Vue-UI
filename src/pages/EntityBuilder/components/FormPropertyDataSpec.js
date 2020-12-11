@@ -11,7 +11,7 @@ import {
 // getFormat,
 // getFormIsUploader,
 // getSchema,
-isChild
+  isChild
 // isSchema,
 // getFieldCollectionSettings,
 // getIconClass
@@ -48,7 +48,11 @@ export default class FormPropertyDataSpec {
             type: 'combo',
             label: 'Reference collection',
             name: 'ref',
-            options: [{ text: 'Please select', value: 'none' }, ...Object.keys(this.swagger.definitions).filter(key => { return key.indexOf('_') === -1 && !isChild(this.swagger.definitions[key]) }).map(key => { return { text: key, value: key } })]
+            options: [
+              { text: 'Please select', value: 'none' },
+              ...Object.keys(this.swagger.definitions).filter(key => { return key.indexOf('_') === -1 && !isChild(this.swagger.definitions[key]) }).map(key => { return { text: key, value: key } })
+            ]
+            // getEntities
           },
           { type: 'checkbox', label: 'Populate', name: 'populate', position: 'label-right' },
           { type: 'checkbox', label: 'Required', name: 'required', position: 'label-right' }
