@@ -54,7 +54,7 @@
     "vue": "^2.6.9",
     "vue-cropperjs": "^4.1.0",
     "vue-fullcalendar": "^1.0.9",
-    "vue-perfect-scrollbar": "^0.1.0",
+    "vue-perfect-scrollbar": "^0.2.1",
     "vue-quill-editor": "^3.0.6",
     "vue-resize": "^0.4.4",
     "vue-router": "^3.0.1",
