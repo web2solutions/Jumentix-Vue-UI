@@ -1,7 +1,7 @@
 const Projects =  [
   {
     username: 'Dessie',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/ludwiczakpawel/128.jpg',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGqLx7wMSo52wlsR6Z-wSojQce5u7qiQnnMA&usqp=CAU',
     name: 'Template PSD',
     deadline: '2 days later',
     progress: 90,
@@ -9,7 +9,7 @@ const Projects =  [
   },
   {
     username: 'Jakayla',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/suprb/128.jpg',    
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnlwn0zWYxGemFG6uiE_I2Huf0014n2VNvWg&usqp=CAU', 
     name: 'Logo Design',
     deadline: '1 weeks later',
     progress: 70,
@@ -17,7 +17,7 @@ const Projects =  [
   },
   {
     username: 'Ludwiczakpawel',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/ludwiczakpawel/128.jpg',    
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_OaPA7drGndqjDmxDyDgWkdC0LaelKp-EZg&usqp=CAU',
     name: 'REST API',
     deadline: '1 Month later',
     progress: 50,
@@ -25,7 +25,7 @@ const Projects =  [
   },
   {
     username: 'Damenleeturks',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/damenleeturks/128.jpg',    
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKT57havtBtcZuS9y0hs6E11W9KHINVQytQ&usqp=CAU',
     name: 'API Unit Test',
     deadline: '2 Month later',
     progress: 30,
@@ -33,7 +33,7 @@ const Projects =  [
   },
   {
     username: 'Caspergrl',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/caspergrl/128.jpg',    
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2OrIDKQCWglckcgRWp33lt7TRQII-KOJdVQ&usqp=CAU',
     name: 'Project Deploy',
     deadline: 'half year later',
     progress: 15,

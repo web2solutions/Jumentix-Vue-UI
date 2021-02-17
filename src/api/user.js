@@ -90,7 +90,7 @@ const Items =  [
     'jobTitle': 'Project Manager',
     'username': 'Hortense99',
     'phone': '712.916.2569 x0663',
-    'avatar': 'https://s3.amazonaws.com/uifaces/faces/twitter/moscoz/128.jpg',
+    'avatar': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2OrIDKQCWglckcgRWp33lt7TRQII-KOJdVQ&usqp=CAU',
     'address': {
       'street': '9046 Allen Ferry',
       'suite': 'Suite 429',
@@ -111,7 +111,7 @@ const Items =  [
     'email': 'Pat_Zulauf81.Bartell86@gmail.com',
     'username': 'Pat_Zulauf81',
     'phone': '(058) 200-7342',
-    'avatar': 'https://s3.amazonaws.com/uifaces/faces/twitter/rehatkathuria/128.jpg',
+    'avatar': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKT57havtBtcZuS9y0hs6E11W9KHINVQytQ&usqp=CAU',
     'address': {
       'street': '62268 Favian Coves',
       'suite': 'Suite 993',
@@ -258,7 +258,7 @@ const Items =  [
     'email': 'Olin.Robel49.Schowalter24@yahoo.com',
     'username': 'Olin.Robel49',
     'phone': '1-982-234-7756',
-    'avatar': 'https://s3.amazonaws.com/uifaces/faces/twitter/jcubic/128.jpg',
+    'avatar': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKT57havtBtcZuS9y0hs6E11W9KHINVQytQ&usqp=CAU',
     'address': {
       'street': '0813 Mayer Greens',
       'suite': 'Apt. 551',
@@ -279,7 +279,7 @@ const Items =  [
     'email': 'Rollin43_Fay@yahoo.com',
     'username': 'Rollin43',
     'phone': '477-651-5715 x502',
-    'avatar': 'https://s3.amazonaws.com/uifaces/faces/twitter/horaciobella/128.jpg',
+    'avatar': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKT57havtBtcZuS9y0hs6E11W9KHINVQytQ&usqp=CAU',
     'address': {
       'street': '5704 Spinka Causeway',
       'suite': 'Suite 388',
@@ -300,7 +300,7 @@ const Items =  [
     'username': 'Murl_Abshire41',
     'jobTitle': 'Web Developer',
     'phone': '107-733-1219 x0615',
-    'avatar': 'https://s3.amazonaws.com/uifaces/faces/twitter/stayuber/128.jpg',
+    'avatar': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKT57havtBtcZuS9y0hs6E11W9KHINVQytQ&usqp=CAU',
     'address': {
       'street': '4880 Tanner Circles',
       'suite': 'Apt. 994',
